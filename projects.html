@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="description" content="孔晨宇 的项目案例：RAG 系统、Agent 对话、本地优先桌面应用与企业级系统。">
+<meta name="theme-color" content="#eee9df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171411" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+  (function () {
+    var s = null; try { s = localStorage.getItem("vc-theme"); } catch (e) {}
+    var t = s || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="stylesheet" href="assets/css/style.css">
+<title>项目 · 孔晨宇</title>
+</head>
+<body>
+<a class="skip-link" href="#main-content"><span data-i18n="skip">跳到正文</span></a>
+<header class="site-header">
+  <div class="site-shell header-inner">
+    <a class="brand" href="index.html" aria-label="返回 孔晨宇 封面首页" title="返回封面首页">
+      <span class="brand-name">Chenyu.</span>
+      <span class="brand-meta">
+        <span class="brand-role">AI application engineer</span>
+        <span class="nav-status">Still compiling<span class="trace-cursor" aria-hidden="true">_</span></span>
+      </span>
+    </a>
+    <nav class="desktop-nav nav-tray" aria-label="主导航"><a href="home.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4.5 9.5 12 3.8l7.5 5.7v9.2a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9.2 20.2v-6h5.6v6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Home</span></a><a href="projects.html" aria-current="page"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m12 3.8 8 4.1-8 4.1-8-4.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m4 12.1 8 4.1 8-4.1M4 16.3l8 4 8-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Projects</span></a><a href="writing.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 4.5h10.5A1.5 1.5 0 0 1 17 6v4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="M5 4.5A1.5 1.5 0 0 0 3.5 6v12A1.5 1.5 0 0 0 5 19.5h6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="m12.5 17.7 1.1-3.3 5.2-5.2 2 2-5.2 5.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Writing</span></a><a href="log.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 13.2h3.2l1.7-4.4 3 8.2 2.2-5.2 1.2 1.4H20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 5.2h14M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".45"></path></svg><span>Log</span></a><a href="about.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7.4" r="3.2" stroke="currentColor" stroke-width="1.7"></circle><path d="M5.5 20c.4-4 2.5-6.2 6.5-6.2s6.1 2.2 6.5 6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><span>About</span></a></nav>
+    <div class="header-actions">
+      <button class="icon-button" type="button" data-open-search aria-label="打开站内搜索"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></button>
+      <button class="lang-toggle" type="button" data-lang-toggle aria-label="切换语言">EN</button>
+      <button class="icon-button theme-toggle" type="button" aria-label="切换深色主题" title="切换主题"><svg class="theme-icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.42 1.42M6.7 17.3l-1.42 1.42M18.72 18.72l-1.42-1.42M6.7 6.7 5.28 5.28" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><svg class="theme-icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 15.5A8 8 0 0 1 8.5 4 8.2 8.2 0 1 0 20 15.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg></button>
+      <a class="resume-link" href="resume.html">Résumé <span class="arr">↗</span></a>
+      <details class="mobile-menu">
+        <summary aria-label="打开导航"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></summary>
+        <nav class="nav-tray" aria-label="移动端导航"><a href="home.html"><span>Home</span></a><a href="projects.html" aria-current="page"><span>Projects</span></a><a href="writing.html"><span>Writing</span></a><a href="log.html"><span>Log</span></a><a href="about.html"><span>About</span></a><a href="resume.html"><span>Résumé</span></a></nav>
+      </details>
+    </div>
+  </div>
+</header>
+<main id="main-content" class="site-main"><div class="index-page index-page--projects">
+    <header class="index-hero site-shell">
+      <div class="index-hero__title">
+        <p class="eyebrow">Projects / AI &amp; Engineering</p>
+        <h1><span data-i18n="projects_title">项目</span></h1>
+      </div>
+      <div class="index-hero__brief">
+        <p data-i18n="projects_intro">从 AI 应用到本地桌面产品与企业系统。每个案例都展开系统结构、关键实现、工程边界与验证方式。</p>
+        <dl class="index-hero__facts"><div><dt>Published</dt><dd data-i18n="projects_pub_val">04</dd></div><div><dt>Scope</dt><dd data-i18n="projects_scope_val">AI · Desktop · ERP</dd></div><div><dt>Open source</dt><dd data-i18n="projects_os_val">02</dd></div></dl>
+      </div>
+    </header>
+    <section class="listing-section site-shell">
+      <div class="filter-bar" data-filter-group aria-label="按技术筛选项目"><button class="filter-button" type="button" data-filter="all" aria-pressed="true" data-i18n="writing_filter_all">全部</button><button class="filter-button" type="button" data-filter="RAG" aria-pressed="false">RAG</button><button class="filter-button" type="button" data-filter="Agent" aria-pressed="false">Agent</button><button class="filter-button" type="button" data-filter="MCP" aria-pressed="false">MCP</button><button class="filter-button" type="button" data-filter="Function Calling" aria-pressed="false">Function Calling</button><button class="filter-button" type="button" data-filter="Tauri" aria-pressed="false">Tauri</button><button class="filter-button" type="button" data-filter="React" aria-pressed="false">React</button><button class="filter-button" type="button" data-filter="TypeScript" aria-pressed="false">TypeScript</button><button class="filter-button" type="button" data-filter="Rust" aria-pressed="false">Rust</button><button class="filter-button" type="button" data-filter="SQLite" aria-pressed="false">SQLite</button><button class="filter-button" type="button" data-filter="FastAPI" aria-pressed="false">FastAPI</button><button class="filter-button" type="button" data-filter="Local-first" aria-pressed="false">Local-first</button></div>
+      <div class="project-listing"><a class="project-card" href="projects.html" data-tags="RAG,Retrieval,Evaluation">
+        <div>
+          <div class="project-meta"><span data-i18n="pr1_cat">AI 应用开发 / RAG</span><span data-i18n="pr1_kind">旗舰项目</span></div>
+          <h3 data-i18n="pr1_title">文档知识问答系统</h3>
+          <p class="project-summary" data-i18n="pr1_desc">面向长文档的端到端 RAG 系统：从 PDF 解析、混合召回与精排，到问答模型微调、量化部署和全链路评测。</p>
+        </div>
+        <div class="project-footer">
+          <div class="metric-row"><div class="metric"><strong>3 路</strong><span data-i18n="pr1_m1">混合召回</span></div><div class="metric"><strong>+3.7%</strong><span data-i18n="pr1_m2">问答准确性</span></div></div>
+          <span class="post-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+<a class="project-card compact" href="projects.html" data-tags="Agent,MCP,Function Calling">
+        <div>
+          <div class="project-meta"><span data-i18n="pr2_cat">LLM 应用 / Agent</span><span data-i18n="pr2_kind">系统项目</span></div>
+          <h3 data-i18n="pr2_title">多轮任务型对话系统</h3>
+          <p class="project-summary" data-i18n="pr2_desc">使用分层意图召回、LLM、Agent 与 MCP 协同处理上百个技能，在多轮上下文中完成意图识别、槽位抽取与工具调用。</p>
+        </div>
+        <div class="project-footer">
+          <div class="metric-row"><div class="metric"><strong>30+</strong><span data-i18n="pr2_m1">技能领域</span></div><div class="metric"><strong>12 轮</strong><span data-i18n="pr2_m2">长程对话</span></div></div>
+          <span class="post-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+<a class="project-card compact" href="projects.html" data-tags="Tauri,React,TypeScript,Rust,SQLite,Local-first">
+        <div>
+          <div class="project-meta"><span data-i18n="pr3_cat">桌面应用 / 本地优先</span><span data-i18n="pr3_kind">开源项目</span></div>
+          <h3 data-i18n="pr3_title">栖屿 · 桌面个人工作站</h3>
+          <p class="project-summary" data-i18n="pr3_desc">一款本地优先的跨平台个人工作站，将日程、任务、笔记、文件与生活记录收进统一桌面空间。</p>
+        </div>
+        <div class="project-footer">
+          <div class="metric-row"><div class="metric"><strong>12</strong><span data-i18n="pr3_m1">核心模块</span></div><div class="metric"><strong>Local</strong><span data-i18n="pr3_m2">数据优先</span></div></div>
+          <span class="post-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+<a class="project-card compact" href="projects.html" data-tags="FastAPI,React,TypeScript,SQLite">
+        <div>
+          <div class="project-meta"><span data-i18n="pr4_cat">全栈工程 / 企业系统</span><span data-i18n="pr4_kind">开源项目</span></div>
+          <h3 data-i18n="pr4_title">轻量 ERP 管理系统</h3>
+          <p class="project-summary" data-i18n="pr4_desc">面向中小团队的轻量化 ERP，将组织人事、审批流、项目交付、知识库与财务流程集中到统一入口。</p>
+        </div>
+        <div class="project-footer">
+          <div class="metric-row"><div class="metric"><strong>7</strong><span data-i18n="pr4_m1">业务领域</span></div><div class="metric"><strong>62</strong><span data-i18n="pr4_m2">数据表</span></div></div>
+          <span class="post-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+</div>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="site-shell footer-inner">
+    <div>
+      <p class="footer-mark">KongChenyu <span class="mono">/ Still compiling<span class="trace-cursor">_</span></span></p>
+      <p class="footer-copy">© <span data-year>2026</span> Chenyu Kong. <span data-i18n="footer_copy">用代码构建，也用文字复盘。</span></p>
+    </div>
+    <nav class="footer-links">
+      <a href="mailto:chenyu.kong@example.com">Email</a>
+      <a href="writing.html">RSS</a>
+      <button data-backtop type="button"><span data-i18n="backtop">返回顶部 ↑</span></button>
+    </nav>
+  </div>
+</footer>
+<dialog id="site-search" class="search-dialog" aria-label="站内搜索">
+  <div class="search-topbar">
+    <span class="search-signal"><i></i> Search</span>
+    <span class="search-edition">Index</span>
+    <button class="search-close" type="button"><span data-i18n="search_close">Esc 关闭</span></button>
+  </div>
+  <div class="search-intro">
+    <p>SEARCH</p>
+    <h2 data-i18n="search_intro">搜点什么</h2>
+  </div>
+  <label class="search-field">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    <input id="search-input" type="search" placeholder="搜索文章、项目、页面…" data-i18n-placeholder="search_placeholder" autocomplete="off">
+    <span class="search-field-mark">|</span>
+  </label>
+  <div class="search-meta">
+    <p class="search-status" id="search-status" data-i18n="search_hint">输入关键词开始搜索</p>
+    <span>esc 关闭</span>
+  </div>
+  <ul class="search-results" id="search-results"></ul>
+</dialog>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

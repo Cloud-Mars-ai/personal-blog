@@ -1,0 +1,4 @@
+_shots/
+_build.py
+.playwright-cli/
+*.pyc

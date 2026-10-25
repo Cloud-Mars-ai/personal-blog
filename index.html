@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="description" content="孔晨宇 的个人技术博客，记录 AI 应用、RAG、Agent 与持续构建。">
+<meta name="theme-color" content="#eee9df" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171411" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+  (function () {
+    var s = null; try { s = localStorage.getItem("vc-theme"); } catch (e) {}
+    var t = s || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Chenyu Kong's Personal Blog</title>
+</head>
+<body class="portal-body">
+<main id="main-content" class="site-main portal-main">
+  <section class="cover" data-cover aria-labelledby="cover-title">
+    <header class="cover-header">
+      <div class="cover-identity">
+        <a class="cover-logo" href="index.html" aria-label="孔晨宇 封面">Chenyu.</a>
+        <span class="nav-status">Still compiling<span class="trace-cursor" aria-hidden="true">_</span></span>
+      </div>
+      <nav class="cover-nav nav-tray" aria-label="封面导航">
+        <a href="about.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7.4" r="3.2" stroke="currentColor" stroke-width="1.7"></circle><path d="M5.5 20c.4-4 2.5-6.2 6.5-6.2s6.1 2.2 6.5 6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><span>About</span></a>
+        <a href="writing.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 4.5h10.5A1.5 1.5 0 0 1 17 6v4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="M5 4.5A1.5 1.5 0 0 0 3.5 6v12A1.5 1.5 0 0 0 5 19.5h6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="m12.5 17.7 1.1-3.3 5.2-5.2 2 2-5.2 5.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Writing</span></a>
+        <a href="projects.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m12 3.8 8 4.1-8 4.1-8-4.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m4 12.1 8 4.1 8-4.1M4 16.3l8 4 8-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Projects</span></a>
+        <a href="log.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 13.2h3.2l1.7-4.4 3 8.2 2.2-5.2 1.2 1.4H20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 5.2h14M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".45"></path></svg><span>Log</span></a>
+        <a href="resume.html"><svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 3.8h8.2l3.8 3.8v12.6H6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14.2 3.8v3.8H18M9 12h6M9 15.5h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Résumé</span></a>
+      </nav>
+      <div class="cover-tools">
+        <button class="lang-toggle" type="button" data-lang-toggle aria-label="切换语言">EN</button>
+        <button class="icon-button theme-toggle" type="button" aria-label="切换深色主题" title="切换主题"><svg class="theme-icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.42 1.42M6.7 17.3l-1.42 1.42M18.72 18.72l-1.42-1.42M6.7 6.7 5.28 5.28" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><svg class="theme-icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 15.5A8 8 0 0 1 8.5 4 8.2 8.2 0 1 0 20 15.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg></button>
+        <a class="cover-menu" href="home.html">Index <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+    <main class="cover-stage">
+      <span class="cover-rule rule-left" aria-hidden="true"></span>
+      <span class="cover-rule rule-top" aria-hidden="true"></span>
+      <span class="cover-cross cross-top" aria-hidden="true">+</span>
+      <span class="cover-cross cross-bottom" aria-hidden="true">+</span>
+      <div class="cover-copy">
+        <h1 id="cover-title">Kong<br><em>Chenyu</em></h1>
+        <p class="cover-role"><span aria-hidden="true"></span>AI application engineer · build in public</p>
+        <p class="cover-statement"><span data-i18n="cover_statement_1">把复杂的模型能力变成可靠产品</span><br><span data-i18n="cover_statement_2">也把每一次构建，写成可复用的经验</span></p>
+        <div class="cover-actions">
+          <a class="cover-button cover-button-primary" href="home.html" data-enter><span data-i18n="cover_enter">进入博客</span> <span aria-hidden="true">→</span></a>
+          <a class="cover-button" href="about.html"><span data-i18n="cover_about">关于我</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="cover-portrait" data-portrait aria-hidden="true">
+        <img class="portrait-source" data-pixel-source src="assets/img/hero-illustration.png" width="1536" height="934" loading="eager" decoding="async" fetchpriority="high" alt="">
+        <canvas class="portrait-canvas" data-pixel-canvas></canvas>
+      </div>
+      <p class="cover-footnote">RAG · AGENT · MCP · EVALUATION</p>
+      <p class="cover-edition">Portfolio / 2026</p>
+    </main>
+    <div class="cover-transition" aria-hidden="true"></div>
+  </section>
+</main>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/pixel.js"></script>
+</body>
+</html>
+
