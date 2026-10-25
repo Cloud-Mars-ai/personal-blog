@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="description" content="孔晨宇 的项目案例。">
+<meta name="description" content="孔晨宇 的全部开源与协作项目。">
 <meta name="theme-color" content="#eee9df" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#171411" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -23,10 +23,7 @@
   <div class="site-shell header-inner">
     <a class="brand" href="index.html" aria-label="返回 孔晨宇 封面首页" title="返回封面首页">
       <span class="brand-name">Chenyu.</span>
-      <span class="brand-meta">
-        <span class="brand-role">AI application engineer</span>
-        <span class="nav-status">Still compiling<span class="trace-cursor" aria-hidden="true">_</span></span>
-      </span>
+      <span class="brand-meta"><span class="brand-role">AI application engineer</span><span class="nav-status">Still compiling<span class="trace-cursor" aria-hidden="true">_</span></span></span>
     </a>
     <nav class="desktop-nav nav-tray" aria-label="主导航"><a href="home.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4.5 9.5 12 3.8l7.5 5.7v9.2a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9.2 20.2v-6h5.6v6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Home</span></a><a href="projects.html" aria-current="page"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m12 3.8 8 4.1-8 4.1-8-4.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m4 12.1 8 4.1 8-4.1M4 16.3l8 4 8-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Projects</span></a><a href="writing.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 4.5h10.5A1.5 1.5 0 0 1 17 6v4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="M5 4.5A1.5 1.5 0 0 0 3.5 6v12A1.5 1.5 0 0 0 5 19.5h6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="m12.5 17.7 1.1-3.3 5.2-5.2 2 2-5.2 5.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Writing</span></a><a href="log.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 13.2h3.2l1.7-4.4 3 8.2 2.2-5.2 1.2 1.4H20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 5.2h14M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".45"></path></svg><span>Log</span></a><a href="about.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7.4" r="3.2" stroke="currentColor" stroke-width="1.7"></circle><path d="M5.5 20c.4-4 2.5-6.2 6.5-6.2s6.1 2.2 6.5 6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><span>About</span></a></nav>
     <div class="header-actions">
@@ -43,51 +40,138 @@
 </header>
 <main id="main-content" class="site-main"><div class="index-page index-page--projects">
     <header class="index-hero site-shell">
-      <div class="index-hero__title">
-        <p class="eyebrow">Projects / AI &amp; Vision</p>
-        <h1><span data-i18n="projects_title">项目</span></h1>
-      </div>
-      <div class="index-hero__brief">
-        <p data-i18n="projects_intro">从三维可视化到机器人视觉与 AI 应用。每个案例都展开系统结构、关键实现、工程边界与验证方式。</p>
-        <dl class="index-hero__facts"><div><dt>Published</dt><dd data-i18n="projects_pub_val">10+</dd></div><div><dt>Scope</dt><dd data-i18n="projects_scope_val">Vision · 3D · AI</dd></div><div><dt>Open source</dt><dd data-i18n="projects_os_val">6+</dd></div></dl>
-      </div>
+      <div class="index-hero__title"><p class="eyebrow">Projects / AI &amp; Vision</p><h1><span data-i18n="projects_title">项目</span></h1></div>
+      <div class="index-hero__brief"><p data-i18n="projects_intro">我全部的开源与协作项目——从三维可视化、机器人视觉到 AI 应用。</p><dl class="index-hero__facts"><div><dt>Mine</dt><dd data-i18n="projects_mine_val">7</dd></div><div><dt>Scope</dt><dd data-i18n="projects_scope_val">Vision · 3D · AI</dd></div><div><dt>Collab</dt><dd data-i18n="projects_collab_val">9</dd></div></dl></div>
     </header>
-    <section class="listing-section site-shell">
-      <div class="filter-bar" data-filter-group aria-label="按技术筛选项目"><button class="filter-button" type="button" data-filter="all" aria-pressed="true" data-i18n="writing_filter_all">全部</button><button class="filter-button" type="button" data-filter="RAG" aria-pressed="false">RAG</button><button class="filter-button" type="button" data-filter="Agent" aria-pressed="false">Agent</button><button class="filter-button" type="button" data-filter="MCP" aria-pressed="false">MCP</button><button class="filter-button" type="button" data-filter="Vision" aria-pressed="false">Vision</button><button class="filter-button" type="button" data-filter="Calibration" aria-pressed="false">Calibration</button><button class="filter-button" type="button" data-filter="WebGL" aria-pressed="false">WebGL</button><button class="filter-button" type="button" data-filter="Three.js" aria-pressed="false">Three.js</button><button class="filter-button" type="button" data-filter="React" aria-pressed="false">React</button><button class="filter-button" type="button" data-filter="TypeScript" aria-pressed="false">TypeScript</button><button class="filter-button" type="button" data-filter="Python" aria-pressed="false">Python</button><button class="filter-button" type="button" data-filter="FastAPI" aria-pressed="false">FastAPI</button></div>
-      <div class="project-listing"><a class="project-card" href="https://github.com/Cloud-Mars-ai/travel-earth" target="_blank" rel="noopener" data-tags="WebGL,Three.js,React,TypeScript">
+    <section class="listing-section site-shell"><div class="project-listing"><a class="project-card" href="https://github.com/Cloud-Mars-ai/travel-earth" target="_blank" rel="noopener">
         <div>
-          <div class="project-meta"><span data-i18n="pr1_cat">三维可视化 / WebGL</span><span data-i18n="pr1_kind">旗舰项目</span></div>
-          <h3 data-i18n="pr1_title">沉浸式三维旅行地球</h3>
-          <p class="project-summary" data-i18n="pr1_desc">基于 WebGL 的全球地点探索应用，整合知乎旅行经验、看山旅行宠物与足迹记录，沉浸式漫游三维地球。</p>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>TypeScript</span></div>
+          <h3>沉浸式三维旅行地球</h3>
+          <p class="project-summary">全球地点探索、知乎旅行经验、看山旅行宠物与足迹记录</p>
         </div>
-        <div class="project-footer"><div class="metric-row"><div class="metric"><strong>Three.js</strong><span data-i18n="pr1_m1">三维地球</span></div><div class="metric"><strong>足迹</strong><span data-i18n="pr1_m2">足迹记录</span></div></div><span class="post-arrow" aria-hidden="true">↗</span></div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
       </a>
-<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/hydrogen-lead-agent" target="_blank" rel="noopener" data-tags="Agent,MCP,Python">
+<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/hydrogen-lead-agent" target="_blank" rel="noopener">
         <div>
-          <div class="project-meta"><span data-i18n="pr2_cat">AI 应用 / Agent</span><span data-i18n="pr2_kind">系统项目</span></div>
-          <h3 data-i18n="pr2_title">氢能行业机会发现 Agent</h3>
-          <p class="project-summary" data-i18n="pr2_desc">面向氢能行业的机会发现与精准获客 AI Agent，自动挖掘行业线索并完成客户画像。</p>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>Python</span></div>
+          <h3>氢能行业机会发现 Agent</h3>
+          <p class="project-summary">AI agent for hydrogen industry opportunity discovery and precision customer acquisition</p>
         </div>
-        <div class="project-footer"><div class="metric-row"><div class="metric"><strong>Agent</strong><span data-i18n="pr2_m1">机会发现</span></div><div class="metric"><strong>获客</strong><span data-i18n="pr2_m2">精准获客</span></div></div><span class="post-arrow" aria-hidden="true">↗</span></div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
       </a>
-<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/dobot-handeye-calibration" target="_blank" rel="noopener" data-tags="Vision,Calibration,Python">
+<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/personal-blog" target="_blank" rel="noopener">
         <div>
-          <div class="project-meta"><span data-i18n="pr3_cat">机器人视觉 / 标定</span><span data-i18n="pr3_kind">系统项目</span></div>
-          <h3 data-i18n="pr3_title">DOBOT 视觉手眼标定系统</h3>
-          <p class="project-summary" data-i18n="pr3_desc">机械臂手眼标定系统，实现相机与机械臂坐标统一，支撑视觉引导的抓取与定位。</p>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>HTML</span></div>
+          <h3>个人博客</h3>
+          <p class="project-summary">复古编辑风个人网站（本网站）</p>
         </div>
-        <div class="project-footer"><div class="metric-row"><div class="metric"><strong>Vision</strong><span data-i18n="pr3_m1">手眼标定</span></div><div class="metric"><strong>标定</strong><span data-i18n="pr3_m2">视觉引导</span></div></div><span class="post-arrow" aria-hidden="true">↗</span></div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
       </a>
-<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/BUCT-SIEHUB" target="_blank" rel="noopener" data-tags="React,TypeScript,FastAPI">
+<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/expression-training-app" target="_blank" rel="noopener">
         <div>
-          <div class="project-meta"><span data-i18n="pr4_cat">全栈 / 校园</span><span data-i18n="pr4_kind">校园项目</span></div>
-          <h3 data-i18n="pr4_title">学生权益反馈系统</h3>
-          <p class="project-summary" data-i18n="pr4_desc">面向国际教育学院的校园权益反馈平台，提供意见提交、进度追踪与透明处理流程。</p>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>TypeScript</span></div>
+          <h3>表达训练应用</h3>
+          <p class="project-summary">Expression training app</p>
         </div>
-        <div class="project-footer"><div class="metric-row"><div class="metric"><strong>Feedback</strong><span data-i18n="pr4_m1">权益反馈</span></div><div class="metric"><strong>校园</strong><span data-i18n="pr4_m2">校园服务</span></div></div><span class="post-arrow" aria-hidden="true">↗</span></div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
       </a>
-</div>
-    </section>
+<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/BUCT-headmaster" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>HTML</span></div>
+          <h3>BUCT 校长主页</h3>
+          <p class="project-summary">BUCT headmaster page</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/contribution-checkin-2026" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>—</span></div>
+          <h3>贡献签到 2026</h3>
+          <p class="project-summary">Contribution check-in 2026</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Cloud-Mars-ai/python----" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_mine">我的项目</span><span>Python</span></div>
+          <h3>Python 脚本集</h3>
+          <p class="project-summary">Python scripts collection</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/2545666/BUCT-SIEHUB" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>JavaScript</span></div>
+          <h3>BUCT 学生权益反馈系统</h3>
+          <p class="project-summary">BUCT Student Right Feedback System (of SIE)</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/zly2006/zhihu-hackathon" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>TypeScript</span></div>
+          <h3>知乎黑客松项目</h3>
+          <p class="project-summary">Zhihu hackathon</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Battleplus/-SHIYU-Find-Your-Words-One-Question-at-a-Time." target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>—</span></div>
+          <h3>SHIYU 找词</h3>
+          <p class="project-summary">Find Your Words, one question at a time</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Raicom-competition/dobot-handeye-calibration" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>Python</span></div>
+          <h3>DOBOT 视觉手眼标定系统</h3>
+          <p class="project-summary">DOBOT 机械臂手眼标定</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Raicom-competition/d435-height-measurement" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>Python</span></div>
+          <h3>D435 物体高度测量</h3>
+          <p class="project-summary">D435 height measurement</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Raicom-competition/dvs-height-service" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>Python</span></div>
+          <h3>DVS 高度通讯服务</h3>
+          <p class="project-summary">DVS height service</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Raicom-competition/vision-sorting-monitor" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>Python</span></div>
+          <h3>视觉分拣监控矩阵</h3>
+          <p class="project-summary">Vision sorting monitor</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Raicom-competition/vision-system-diagnostic" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>Batchfile</span></div>
+          <h3>视觉系统诊断工具</h3>
+          <p class="project-summary">Vision system diagnostic</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+<a class="project-card compact" href="https://github.com/Raicom-competition/training-results-analyzer" target="_blank" rel="noopener">
+        <div>
+          <div class="project-meta"><span data-i18n="proj_collab">协作项目</span><span>Python</span></div>
+          <h3>训练结果分析器</h3>
+          <p class="project-summary">Training results analyzer</p>
+        </div>
+        <div class="project-footer"><span class="post-arrow" aria-hidden="true">↗</span></div>
+      </a>
+</div></section>
   </div>
 </main>
 <footer class="site-footer">
@@ -104,21 +188,10 @@
   </div>
 </footer>
 <dialog id="site-search" class="search-dialog" aria-label="站内搜索">
-  <div class="search-topbar">
-    <span class="search-signal"><i></i> Search</span>
-    <span class="search-edition">Index</span>
-    <button class="search-close" type="button"><span data-i18n="search_close">Esc 关闭</span></button>
-  </div>
+  <div class="search-topbar"><span class="search-signal"><i></i> Search</span><span class="search-edition">Index</span><button class="search-close" type="button"><span data-i18n="search_close">Esc 关闭</span></button></div>
   <div class="search-intro"><p>SEARCH</p><h2 data-i18n="search_intro">搜点什么</h2></div>
-  <label class="search-field">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <input id="search-input" type="search" placeholder="搜索文章、项目、页面…" data-i18n-placeholder="search_placeholder" autocomplete="off">
-    <span class="search-field-mark">|</span>
-  </label>
-  <div class="search-meta">
-    <p class="search-status" id="search-status" data-i18n="search_hint">输入关键词开始搜索</p>
-    <span>esc 关闭</span>
-  </div>
+  <label class="search-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><input id="search-input" type="search" placeholder="搜索文章、项目、页面…" data-i18n-placeholder="search_placeholder" autocomplete="off"><span class="search-field-mark">|</span></label>
+  <div class="search-meta"><p class="search-status" id="search-status" data-i18n="search_hint">输入关键词开始搜索</p><span>esc 关闭</span></div>
   <ul class="search-results" id="search-results"></ul>
 </dialog>
 

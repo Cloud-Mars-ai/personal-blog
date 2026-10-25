@@ -23,10 +23,7 @@
   <div class="site-shell header-inner">
     <a class="brand" href="index.html" aria-label="返回 孔晨宇 封面首页" title="返回封面首页">
       <span class="brand-name">Chenyu.</span>
-      <span class="brand-meta">
-        <span class="brand-role">AI application engineer</span>
-        <span class="nav-status">Still compiling<span class="trace-cursor" aria-hidden="true">_</span></span>
-      </span>
+      <span class="brand-meta"><span class="brand-role">AI application engineer</span><span class="nav-status">Still compiling<span class="trace-cursor" aria-hidden="true">_</span></span></span>
     </a>
     <nav class="desktop-nav nav-tray" aria-label="主导航"><a href="home.html" aria-current="page"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4.5 9.5 12 3.8l7.5 5.7v9.2a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9.2 20.2v-6h5.6v6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Home</span></a><a href="projects.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m12 3.8 8 4.1-8 4.1-8-4.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m4 12.1 8 4.1 8-4.1M4 16.3l8 4 8-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Projects</span></a><a href="writing.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 4.5h10.5A1.5 1.5 0 0 1 17 6v4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="M5 4.5A1.5 1.5 0 0 0 3.5 6v12A1.5 1.5 0 0 0 5 19.5h6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="m12.5 17.7 1.1-3.3 5.2-5.2 2 2-5.2 5.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg><span>Writing</span></a><a href="log.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 13.2h3.2l1.7-4.4 3 8.2 2.2-5.2 1.2 1.4H20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 5.2h14M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".45"></path></svg><span>Log</span></a><a href="about.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7.4" r="3.2" stroke="currentColor" stroke-width="1.7"></circle><path d="M5.5 20c.4-4 2.5-6.2 6.5-6.2s6.1 2.2 6.5 6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><span>About</span></a></nav>
     <div class="header-actions">
@@ -48,11 +45,11 @@
         <p class="eyebrow">Hello！I‘m</p>
         <h1 id="home-title">Kong<br>Chenyu<em>.</em></h1>
         <p class="profile-role" data-i18n="home_role">AI 应用开发工程师</p>
-        <p class="profile-bio" data-i18n="home_bio">计算机科学与技术硕士在读，研究多模态学习与大语言模型。目前专注于 RAG、Agent、MCP、模型微调与推理部署。</p>
+        <p class="profile-bio" data-i18n="home_bio">计算机科学与技术硕士在读，研究多模态学习与大语言模型。目前专注于 RAG、Agent、视觉与机器人方向。</p>
         <dl class="profile-facts">
-          <div><dt>Focus</dt><dd data-i18n="home_focus_val">RAG / Agent / MCP / 视觉 · 机器人</dd></div>
+          <div><dt>Focus</dt><dd data-i18n="home_focus_val">AI · Vision · Robotics</dd></div>
           <div><dt>Education</dt><dd data-i18n="home_edu_val">计算机科学与技术硕士在读</dd></div>
-          <div><dt>Experience</dt><dd data-i18n="home_exp_val">BUCT · 视觉与 AI 方向实践</dd></div>
+          <div><dt>Experience</dt><dd data-i18n="home_exp_val">视觉与 AI 方向实践</dd></div>
         </dl>
         <div class="editorial-actions">
           <a href="#selected-work"><span data-i18n="home_view_projects">查看项目</span> <span aria-hidden="true">↓</span></a>
@@ -61,11 +58,15 @@
         </div>
       </div>
       <figure class="profile-portrait">
-        <div class="profile-portrait-frame">
-          <img src="assets/img/profile-portrait.png" alt="孔晨宇 的编辑风格肖像" width="1024" height="1210" loading="eager" fetchpriority="high">
-          <span class="profile-pixel-field" aria-hidden="true"></span>
+        <div class="profile-avatar" data-avatar>
+          <div class="avatar-2d" data-avatar-2d><img src="assets/img/hero-2d.png" alt="孔晨宇 的头像" width="1264" height="1196" loading="eager" fetchpriority="high"></div>
+          <div class="avatar-3d" data-avatar-3d hidden></div>
+          <div class="portrait-mode" role="group" aria-label="视图模式">
+            <button class="mode-btn is-active" type="button" data-mode="2d" aria-pressed="true">2D</button>
+            <button class="mode-btn" type="button" data-mode="3d" aria-pressed="false">3D</button>
+          </div>
         </div>
-        <figcaption><span>Portrait / 001</span><span>Chenyu Kong</span></figcaption>
+        <figcaption><span>Avatar / 001</span><span data-i18n="home_avatar_note">把鼠标移到 3D 头像上，试试转头</span></figcaption>
       </figure>
     </div>
   </section>
@@ -78,7 +79,7 @@
     <div class="editorial-projects"><a class="project-card" href="projects.html"><div>
           <div class="project-meta"><span>三维可视化 / WebGL</span><span>旗舰项目</span></div>
           <h3 data-i18n="home_p1_title">沉浸式三维旅行地球</h3>
-          <div class="metric"><strong>3D</strong> <span data-i18n="home_metric_3routes">三维地球</span></div>
+          <div class="metric"><strong>Three.js</strong> <span data-i18n="home_metric_3routes">三维地球</span></div>
         </div></a>
 <a class="project-card compact" href="projects.html"><div>
           <div class="project-meta"><span>AI 应用 / Agent</span><span>系统项目</span></div>
@@ -100,7 +101,7 @@
   <section class="editorial-section site-shell">
     <header class="editorial-section-head">
       <div><p class="eyebrow">Selected writing</p><h2 data-i18n="home_sec_writing">文章</h2></div>
-      <p data-i18n="home_sec_writing_desc">把实现过程整理成可以复用的判断：为什么这样设计，如何验证，以及哪些边界不能被忽略。</p>
+      <p data-i18n="home_sec_writing_desc">把实现过程整理成可以复用的判断。</p>
       <a class="text-link" href="writing.html"><span data-i18n="home_all_articles">全部文章</span></a>
     </header>
     <div class="post-list editorial-post-list"><a class="post-card" href="writing.html"><span class="post-date">2026/09/02</span>
@@ -147,25 +148,16 @@
   </div>
 </footer>
 <dialog id="site-search" class="search-dialog" aria-label="站内搜索">
-  <div class="search-topbar">
-    <span class="search-signal"><i></i> Search</span>
-    <span class="search-edition">Index</span>
-    <button class="search-close" type="button"><span data-i18n="search_close">Esc 关闭</span></button>
-  </div>
+  <div class="search-topbar"><span class="search-signal"><i></i> Search</span><span class="search-edition">Index</span><button class="search-close" type="button"><span data-i18n="search_close">Esc 关闭</span></button></div>
   <div class="search-intro"><p>SEARCH</p><h2 data-i18n="search_intro">搜点什么</h2></div>
-  <label class="search-field">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
-    <input id="search-input" type="search" placeholder="搜索文章、项目、页面…" data-i18n-placeholder="search_placeholder" autocomplete="off">
-    <span class="search-field-mark">|</span>
-  </label>
-  <div class="search-meta">
-    <p class="search-status" id="search-status" data-i18n="search_hint">输入关键词开始搜索</p>
-    <span>esc 关闭</span>
-  </div>
+  <label class="search-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><input id="search-input" type="search" placeholder="搜索文章、项目、页面…" data-i18n-placeholder="search_placeholder" autocomplete="off"><span class="search-field-mark">|</span></label>
+  <div class="search-meta"><p class="search-status" id="search-status" data-i18n="search_hint">输入关键词开始搜索</p><span>esc 关闭</span></div>
   <ul class="search-results" id="search-results"></ul>
 </dialog>
 
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="assets/js/avatar3d.js"></script>
 </body>
 </html>
