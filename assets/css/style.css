@@ -246,12 +246,31 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .cover-button:hover { background: var(--cover-accent); color: #fff; border-color: var(--cover-accent); }
 .cover-button:hover span { color: #fff; }
 
-.cover-portrait { z-index: 1; width: min(65vw, 74rem); position: absolute; top: 50%; right: -1%; transform: translateY(-47%); }
-.portrait-source { width: 100%; height: auto; mix-blend-mode: multiply; }
+.cover-portrait { z-index: 1; width: min(46vw, 36rem); position: absolute; top: 50%; right: 0; transform: translateY(-47%); }
+.portrait-2d { position: relative; }
+.portrait-source { width: 100%; height: auto; mix-blend-mode: multiply; display: block; }
 .portrait-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; mix-blend-mode: multiply; }
 .cover-portrait.is-pixel-ready .portrait-source { opacity: 0; }
 .cover-portrait.is-pixel-ready .portrait-canvas { display: block; }
-[data-theme="dark"] .portrait-source, [data-theme="dark"] .portrait-canvas {
+
+/* 3D 模式：9 帧角度序列堆叠 + 交叉淡入 */
+.portrait-3d { position: relative; aspect-ratio: 1 / 1; display: none; }
+.portrait-3d img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; mix-blend-mode: multiply; will-change: opacity, transform; }
+[data-portrait].mode-3d .portrait-2d { display: none; }
+[data-portrait].mode-3d .portrait-3d { display: block; }
+
+/* 2D / 3D 切换按钮 */
+.portrait-mode { position: absolute; top: -2.4rem; right: 0; display: flex; gap: .3rem; z-index: 6; }
+.mode-btn {
+  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); background: color-mix(in srgb, var(--paper-strong) 78%, transparent);
+  border: 1px solid var(--line); border-radius: .5rem; padding: .34rem .62rem; cursor: pointer;
+  backdrop-filter: blur(8px); transition: color .18s, background .18s, border-color .18s;
+}
+.mode-btn:hover { color: var(--signal); border-color: var(--signal); }
+.mode-btn.is-active { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+
+[data-theme="dark"] .portrait-source, [data-theme="dark"] .portrait-canvas, [data-theme="dark"] .portrait-3d img {
   filter: invert() hue-rotate(180deg) brightness(.94) saturate(.9); mix-blend-mode: screen;
 }
 
@@ -611,7 +630,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .cover-copy { padding-left: 1rem; }
   .cover-copy h1 { font-size: clamp(4.8rem, 25vw, 6.8rem); line-height: .73; }
   .cover-copy h1 em { margin-left: .22em; }
-  .cover-portrait { width: 100vw; right: -2%; top: auto; bottom: 0; transform: none; }
+  .cover-portrait { width: min(78vw, 20rem); right: auto; left: 50%; top: auto; bottom: 0; transform: translateX(-50%); }
+  .portrait-mode { top: -2.2rem; right: 50%; transform: translateX(50%); }
   .cover-footnote { left: 1rem; bottom: .8rem; }
   .cover-edition { right: 1rem; bottom: .8rem; }
   .cover-rule.rule-left { display: none; }

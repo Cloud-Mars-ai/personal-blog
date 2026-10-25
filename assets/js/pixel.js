@@ -162,6 +162,7 @@
   }
 
   function frame(now) {
+    if (portrait.classList.contains("mode-3d")) { raf = 0; return; }
     var dt = Math.min(0.032, Math.max(0.001, (now - last) / 1000));
     last = now;
     vel += (h - p) * 190 * dt;

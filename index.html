@@ -52,9 +52,26 @@
           <a class="cover-button" href="about.html"><span data-i18n="cover_about">关于我</span> <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="cover-portrait" data-portrait aria-hidden="true">
-        <img class="portrait-source" data-pixel-source src="assets/img/hero-illustration.png" width="1536" height="934" loading="eager" decoding="async" fetchpriority="high" alt="">
-        <canvas class="portrait-canvas" data-pixel-canvas></canvas>
+      <div class="cover-portrait" data-portrait>
+        <div class="portrait-2d" data-portrait-2d>
+          <img class="portrait-source" data-pixel-source src="assets/img/hero-2d.png" width="1264" height="1196" loading="eager" decoding="async" fetchpriority="high" alt="">
+          <canvas class="portrait-canvas" data-pixel-canvas></canvas>
+        </div>
+        <div class="portrait-3d" data-portrait-3d aria-hidden="true">
+          <img src="assets/img/head-60.png" data-head="-60" alt="">
+          <img src="assets/img/head-45.png" data-head="-45" alt="">
+          <img src="assets/img/head-30.png" data-head="-30" alt="">
+          <img src="assets/img/head-15.png" data-head="-15" alt="">
+          <img src="assets/img/head-0.png" data-head="0" alt="">
+          <img src="assets/img/head15.png" data-head="15" alt="">
+          <img src="assets/img/head30.png" data-head="30" alt="">
+          <img src="assets/img/head45.png" data-head="45" alt="">
+          <img src="assets/img/head60.png" data-head="60" alt="">
+        </div>
+        <div class="portrait-mode" role="group" aria-label="视图模式">
+          <button class="mode-btn is-active" type="button" data-mode="2d" aria-pressed="true">2D</button>
+          <button class="mode-btn" type="button" data-mode="3d" aria-pressed="false">3D</button>
+        </div>
       </div>
       <p class="cover-footnote">RAG · AGENT · MCP · EVALUATION</p>
       <p class="cover-edition">Portfolio / 2026</p>
@@ -65,6 +82,7 @@
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/pixel.js"></script>
+<script src="assets/js/head3d.js"></script>
 </body>
 </html>
 
