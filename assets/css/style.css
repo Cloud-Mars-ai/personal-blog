@@ -246,12 +246,10 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .cover-button:hover { background: var(--cover-accent); color: #fff; border-color: var(--cover-accent); }
 .cover-button:hover span { color: #fff; }
 
-.cover-portrait { z-index: 1; width: min(46vw, 36rem); position: absolute; top: 50%; right: 0; transform: translateY(-47%); }
+.cover-portrait { z-index: 1; width: min(65vw, 74rem); position: absolute; top: 50%; right: -1%; transform: translateY(-47%); }
 .portrait-2d { position: relative; }
 .portrait-source { width: 100%; height: auto; mix-blend-mode: multiply; display: block; }
-.portrait-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; mix-blend-mode: multiply; }
-.cover-portrait.is-pixel-ready .portrait-source { opacity: 0; }
-.cover-portrait.is-pixel-ready .portrait-canvas { display: block; }
+.portrait-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 
 /* 3D 模式：9 帧角度序列堆叠 + 交叉淡入 */
 .portrait-3d { position: relative; aspect-ratio: 1 / 1; display: none; }
@@ -270,8 +268,11 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .mode-btn:hover { color: var(--signal); border-color: var(--signal); }
 .mode-btn.is-active { color: var(--paper); background: var(--ink); border-color: var(--ink); }
 
-[data-theme="dark"] .portrait-source, [data-theme="dark"] .portrait-canvas, [data-theme="dark"] .portrait-3d img {
+[data-theme="dark"] .portrait-source, [data-theme="dark"] .portrait-3d img {
   filter: invert() hue-rotate(180deg) brightness(.94) saturate(.9); mix-blend-mode: screen;
+}
+[data-theme="dark"] .portrait-canvas {
+  filter: invert() hue-rotate(180deg) brightness(.94) saturate(.9);
 }
 
 .cover-footnote {
@@ -735,3 +736,18 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 }
 .lang-toggle:hover { color: var(--signal); border-color: var(--signal); }
 [data-theme="dark"] .lang-toggle { border-color: var(--line); }
+
+/* ==========================================================================
+   About 头像区（2D 静态 / 3D 模型）
+   ========================================================================== */
+.about-avatar-wrap { padding: 0 0 1rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.about-avatar { position: relative; width: min(42vw, 13rem); aspect-ratio: 1 / 1; }
+.avatar-2d { width: 100%; height: 100%; }
+.avatar-2d img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-3d { position: absolute; inset: 0; }
+.avatar-3d canvas { width: 100% !important; height: 100% !important; display: block; }
+.about-avatar .portrait-mode { top: -2.2rem; right: 50%; transform: translateX(50%); }
+.about-avatar-note { color: var(--muted); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .04em; margin: 0; }
+[data-avatar].mode-3d .avatar-2d { display: none; }
+[data-avatar].mode-3d .avatar-3d { display: block; }
+[data-theme="dark"] .avatar-2d img { filter: invert() hue-rotate(180deg) brightness(.94) saturate(.9); }
