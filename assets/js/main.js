@@ -120,17 +120,34 @@
     input.addEventListener("input", function () { render(input.value); });
   }
 
-  /* ---------- 封面转场（data-enter → is-leaving） ---------- */
+  /* ---------- 进入页转场（data-enter → 渐变淡出） ---------- */
   var enter = document.querySelector("[data-enter]");
-  var cover = document.querySelector("[data-cover]");
+  var cover = document.querySelector("[data-cover]") || document.body;
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (enter && cover) {
+  if (enter) {
     enter.addEventListener("click", function (e) {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || reduced) return;
       e.preventDefault();
       cover.classList.add("is-leaving");
       window.setTimeout(function () { window.location.assign(enter.href); }, 520);
     });
+  }
+
+  /* ---------- 奖状放大（lightbox） ---------- */
+  var lb = document.querySelector(".award-lightbox");
+  if (lb) {
+    var lbImg = lb.querySelector("img");
+    var closeLb = function () { lb.classList.remove("is-open"); };
+    document.querySelectorAll("[data-award]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        lbImg.src = btn.getAttribute("data-award");
+        lb.classList.add("is-open");
+      });
+    });
+    lb.addEventListener("click", closeLb);
+    var closeBtn = lb.querySelector(".award-lightbox-close");
+    if (closeBtn) closeBtn.addEventListener("click", function (e) { e.stopPropagation(); closeLb(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLb(); });
   }
 
   /* ---------- 返回顶部 / 年份 ---------- */

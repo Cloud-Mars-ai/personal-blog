@@ -782,3 +782,82 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   color: var(--muted); background: color-mix(in srgb, var(--paper-strong) 75%, transparent);
   padding: .3rem .7rem; border-radius: 999px; white-space: nowrap;
 }
+
+/* ==========================================================================
+   Awards 奖状墙
+   ========================================================================== */
+.award-groups { display: block; }
+.award-group { margin-bottom: 3.6rem; }
+.award-group:last-child { margin-bottom: 0; }
+.award-group-title {
+  font-family: var(--font-didone); font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 400;
+  letter-spacing: -.03em; border-top: 1px solid var(--line-strong); padding-top: 1rem;
+  margin: 0 0 1.4rem; display: flex; align-items: baseline; gap: .6rem;
+}
+.award-group-title span { font-family: var(--font-mono); font-size: .72rem; color: var(--signal); letter-spacing: .08em; }
+.award-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+.award-card {
+  text-align: left; padding: 0; background: var(--surface); border: 1px solid var(--line);
+  border-radius: .9rem; overflow: hidden; cursor: zoom-in; display: flex; flex-direction: column;
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), border-color .22s, box-shadow .22s;
+}
+.award-card:hover { transform: translateY(-4px); border-color: var(--signal); box-shadow: var(--shadow); }
+.award-thumb { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-strong); border-bottom: 1px solid var(--line); }
+.award-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+.award-card:hover .award-thumb img { transform: scale(1.05); }
+.award-body { padding: .85rem 1rem 1.05rem; display: grid; gap: .5rem; align-content: start; }
+.award-level {
+  font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .16rem .46rem; border-radius: 999px; border: 1px solid currentColor; justify-self: start; line-height: 1.4;
+}
+.level-national { color: var(--signal); }
+.level-provincial { color: #bf7a28; }
+.level-school { color: var(--ink-soft); }
+.level-college { color: var(--muted); }
+.award-name { font-family: var(--font-display); font-size: .9rem; font-weight: 600; line-height: 1.5; }
+.award-date { font-family: var(--font-mono); font-size: .64rem; color: var(--muted); letter-spacing: .05em; }
+
+/* 奖状放大 */
+.award-lightbox {
+  position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center;
+  padding: 4vmin; background: rgba(20, 17, 12, .86); backdrop-filter: blur(10px);
+}
+.award-lightbox.is-open { display: flex; }
+.award-lightbox img { max-width: 100%; max-height: 89vh; border-radius: .5rem; box-shadow: 0 2rem 6rem rgba(0,0,0,.5); background: #fff; }
+.award-lightbox-close {
+  position: absolute; top: 1.3rem; right: 1.5rem; color: #eee9df; font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .06em; border: 1px solid rgba(238,233,223,.4);
+  padding: .42rem .72rem; border-radius: .55rem; cursor: pointer; background: 0 0;
+}
+.award-lightbox-close:hover { border-color: #eee9df; }
+
+/* ==========================================================================
+   进入页（视频独占整页）
+   ========================================================================== */
+body.entry-body { display: grid; place-items: center; min-height: 100vh; overflow: hidden; cursor: pointer; }
+.entry-main { display: grid; place-items: center; width: 100%; min-height: 100vh; position: relative; }
+.entry-link { display: block; width: min(90vw, 74rem); outline: none; }
+.entry-video {
+  width: 100%; height: auto; display: block;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+  mask-composite: intersect;
+}
+[data-theme="dark"] .entry-video { filter: invert() hue-rotate(180deg) brightness(.94) saturate(.9); mix-blend-mode: screen; }
+.entry-hint {
+  position: fixed; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .16em; color: var(--muted);
+  animation: entry-hint-pulse 2.4s ease-in-out infinite;
+}
+@keyframes entry-hint-pulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+body.is-leaving { opacity: 0; transition: opacity .5s ease; pointer-events: none; }
+
+@media (max-width: 1000px) {
+  .award-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .award-grid { grid-template-columns: 1fr; }
+  .entry-link { width: 96vw; }
+}
