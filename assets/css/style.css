@@ -3,8 +3,24 @@
    ========================================================================== */
 
 /* ---------- 字体 ----------
-   字体改为 HTML <head> 异步加载（media=print → all），不阻塞首屏渲染；
-   本地兜底栈保证任何网络环境下字形一致、不回退到杂乱默认字体。 */
+   热门 webfont 方案（2026-10-29 第 16 轮）：全部自托管 + 子集化 + swap
+   - Playfair Display：Google Fonts 最热 Didone 风格展示衬线（拉丁标题）
+   - Noto Serif SC 思源宋体 / Noto Sans SC 思源黑体：中文展示与正文
+   - 子集化：仅收录全站实际使用的 790 个字符（677 汉字），单字重约 100KB
+   - font-display: swap：首屏先用系统字体绘制，字体到位后无缝替换，不阻塞渲染
+   - IBM Plex Mono 仍由 HTML <head> 异步加载（loli 镜像） */
+
+@font-face { font-family: "Playfair Display"; src: url("../fonts/playfair-display-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("../fonts/playfair-display-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("../fonts/playfair-display-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("../fonts/playfair-display-400i.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Noto Serif SC"; src: url("../fonts/noto-serif-sc-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Noto Serif SC"; src: url("../fonts/noto-serif-sc-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Noto Serif SC"; src: url("../fonts/noto-serif-sc-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 
 /* ---------- Design tokens ---------- */
 :root {
@@ -25,13 +41,13 @@
   --nav-bg: #eee9dfe0;
   --shadow: 0 24px 70px #30241b1c;
   --shadow-soft: 0 10px 32px #30241b12;
-  /* 展示栈：拉丁字形 Didot/Bodoni → Georgia；中文字形走系统宋体系，零下载、全站一致 */
-  --font-didone: "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, "Times New Roman", "Songti SC", "STSong", "SimSun", "Noto Serif SC", "Source Han Serif SC", serif;
-  /* 中文展示栈（大段中文标题用，衬线） */
-  --font-display: "Songti SC", "STSong", "SimSun", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
-  /* 正文栈：无衬线，苹方/雅黑兜底 */
-  --font-body: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
-  /* 等宽栈（IBM Plex Mono 为唯一 webfont，约 128KB/字重，异步加载） */
+  /* 展示栈：拉丁用 Playfair Display（webfont），中文回退思源宋体，再退系统宋体系 */
+  --font-didone: "Playfair Display", "Noto Serif SC", Georgia, "Times New Roman", "Songti SC", "STSong", "SimSun", "Source Han Serif SC", serif;
+  /* 中文展示栈（大段中文标题用，衬线，思源宋体） */
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Source Han Serif SC", Georgia, serif;
+  /* 正文栈：思源黑体（webfont），苹方/雅黑兜底 */
+  --font-body: "Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
+  /* 等宽栈（IBM Plex Mono 为唯一外链 webfont，约 128KB/字重，异步加载） */
   --font-mono: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Consolas, "Courier New", monospace;
   --max-width: 76rem;
   --content-width: 46rem;
