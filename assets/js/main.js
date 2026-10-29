@@ -164,6 +164,22 @@
       try { entryVideo.currentTime = 0; } catch (e) {}
       kick();
     };
+    /* 招手循环：完整动作（助跑→前滚翻→落地站稳）只播放一遍，
+       之后在 4.2s–7.2s 之间无缝循环——该区间恰好 3 个完整挥手周期（1s/次），
+       首尾姿态一致（手臂放下），循环无跳变。JS 接管 loop；无 JS 时保持 HTML loop 兜底。 */
+    var WAVE_FROM = 5.85, WAVE_TO = 7.85;
+    var waveLoop = function () {
+      if (entryVideo.currentTime >= WAVE_TO) {
+        try { entryVideo.currentTime = WAVE_FROM; } catch (e) {}
+      }
+    };
+    try { entryVideo.loop = false; } catch (e) {}
+    if (typeof entryVideo.requestVideoFrameCallback === "function") {
+      var onVideoFrame = function () { waveLoop(); entryVideo.requestVideoFrameCallback(onVideoFrame); };
+      entryVideo.requestVideoFrameCallback(onVideoFrame);
+    } else {
+      entryVideo.addEventListener("timeupdate", waveLoop);
+    }
     if (entryVideo.readyState >= 2) kick();
     entryVideo.addEventListener("loadeddata", kick);
     entryVideo.addEventListener("canplay", kick);
@@ -173,9 +189,14 @@
     var onFirstTouch = function () { kick(); window.removeEventListener("touchstart", onFirstTouch); window.removeEventListener("click", onFirstTouch); };
     window.addEventListener("touchstart", onFirstTouch, { passive: true });
     window.addEventListener("click", onFirstTouch);
-    /* 卡顿/被策略暂停时自动恢复（进入页无暂停控件） */
+    /* 卡顿/被策略暂停时自动恢复（进入页无暂停控件）；
+       若播放到结尾（循环逻辑未接住），拉回招手段继续循环，绝不重播完整动作 */
     entryVideo.addEventListener("stalled", kick);
-    entryVideo.addEventListener("pause", function () { if (!entryVideo.ended) kick(); });
+    entryVideo.addEventListener("pause", function () {
+      if (!entryVideo.ended) { kick(); return; }
+      try { entryVideo.currentTime = WAVE_FROM; } catch (e) {}
+      kick();
+    });
   }
 
   /* ---------- 视觉特效：颗粒 + 进度条（JS 注入，全站生效） ---------- */
