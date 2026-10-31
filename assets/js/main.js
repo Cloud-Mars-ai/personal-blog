@@ -55,12 +55,7 @@
       { t: "Chenyu Kong · 首页", d: "AI 应用工程师的个人主页", h: "index.html", k: "首页 cover home" },
       { t: "Profile · 个人档案", d: "编辑杂志风格的个人档案与精选项目", h: "home.html", k: "profile home 档案" },
       { t: "关于我", d: "我在做什么、实践经历、为什么写作", h: "about.html", k: "about 关于" },
-      { t: "技术文章", d: "RAG、Agent、MCP、评估与本地优先工程的复盘", h: "writing.html", k: "writing 文章 article" },
-      { t: "检索评估不是准确率：一套面向 RAG 的三层指标体系", d: "召回、生成与链路拆开看", h: "writing.html", k: "RAG Retrieval Evaluation 检索 评估" },
-      { t: "Agent 的边界感：让模型只在该出手时出手", d: "分层意图召回与确定性路由", h: "writing.html", k: "Agent Function Calling MCP" },
-      { t: "从 Excel 到系统：小团队的数据迁移与对账实践", d: "迁移与对账的 checklist", h: "writing.html", k: "SQLite FastAPI Engineering 迁移" },
-      { t: "本地优先的代价：桌面应用离线同步的五个取舍", d: "本地优先桌面应用的可信边界", h: "writing.html", k: "Local-first Tauri SQLite 本地" },
-      { t: "当向量库说谎：混合检索中的重排与去噪", d: "重排器、查询改写与噪声过滤", h: "writing.html", k: "RAG Retrieval Evaluation 向量" },
+      { t: "隐私与条款", d: "数据收集、本地存储与内容使用边界", h: "privacy.html", k: "privacy 隐私 条款" },
       { t: "项目", d: "AI 应用、本地桌面产品与企业系统案例", h: "projects.html", k: "projects 项目" },
       { t: "获奖与荣誉", d: "竞赛获奖、奖学金与志愿服务荣誉", h: "awards.html", k: "awards 获奖 荣誉 竞赛 奖学金" },
       { t: "兴趣爱好", d: "运动、关注的 UP 主、书籍与音乐", h: "hobby.html", k: "hobby 兴趣 爱好 运动 up主 书籍 歌手" },
@@ -68,7 +63,6 @@
       { t: "多轮任务型对话系统", d: "Agent 与 MCP 协同", h: "projects.html", k: "Agent MCP 对话 dialogue" },
       { t: "栖屿 · 桌面个人工作站", d: "本地优先跨平台工作台", h: "projects.html", k: "本地 桌面 Tauri workstation" },
       { t: "轻量 ERP 管理系统", d: "面向中小团队的企业系统", h: "projects.html", k: "ERP 系统" },
-      { t: "开发记录", d: "构建、学习、发布与复盘的阶段性变化", h: "log.html", k: "log 记录" },
       { t: "简历", d: "AI 应用开发工程师 · Web 版简历", h: "resume.html", k: "resume 简历" }
     ];
 
@@ -226,7 +220,7 @@
 
   /* ---------- 滚动渐显（ IntersectionObserver ） ---------- */
   var revealTargets = document.querySelectorAll(
-    ".index-hero, .listing-section, .award-group, .project-card, .up-card, .about-layout, .resume-layout, .resume-doc, .hobby-group, .editorial-section, .marquee-band, .resume-project, .timeline-entry, .post-card"
+    ".index-hero, .listing-section, .award-group, .project-card, .up-card, .about-layout, .resume-layout, .resume-doc, .hobby-group, .editorial-section, .resume-project, .timeline-entry, .post-card"
   );
   if (revealTargets.length) {
     if (reduced || !("IntersectionObserver" in window)) {
@@ -277,7 +271,7 @@
           if (!t0) t0 = ts;
           var k = Math.min(1, (ts - t0) / 900);
           var eased = 1 - Math.pow(1 - k, 3);
-          el.textContent = String(Math.round(target * eased)).padStart(String(target).length, "0");
+          el.textContent = String(Math.round(target * eased)).padStart(2, "0");
           if (k < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
@@ -564,6 +558,40 @@
       }
     }
   }
+
+  /* —— I. Tagline reveal（B11：逐词点亮，按阅读序越过触发线） —— */
+  var taglineEl = document.querySelector("[data-tagline]");
+  var splitTagline = function (el) {
+    var units = (el.textContent || "").match(/[A-Za-z0-9]+|\s+|[^\s]/g) || [];
+    var frag = document.createDocumentFragment();
+    units.forEach(function (u) {
+      var s = document.createElement("span");
+      s.className = "tw";
+      s.textContent = u;
+      frag.appendChild(s);
+    });
+    el.textContent = "";
+    el.appendChild(frag);
+  };
+  var initTagline = function () {
+    /* 减少动画或不支持 Observer 时不拆分，保持完整可读文本 */
+    if (!taglineEl || reduced || !("IntersectionObserver" in window)) return;
+    if (taglineEl.querySelector(".tw")) return;
+    splitTagline(taglineEl);
+    var tio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-lit"); tio.unobserve(en.target); }
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -30% 0px" });
+    taglineEl.querySelectorAll(".tw").forEach(function (s) { tio.observe(s); });
+  };
+  initTagline();
+  /* 语言切换后 i18n 已替换文本，重新拆分并重新观察 */
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    if (!t || !t.closest || !t.closest("[data-lang-toggle]")) return;
+    setTimeout(initTagline, 0);
+  });
 
   /* ---------- 返回顶部 / 年份 ---------- */
   document.querySelectorAll("[data-backtop]").forEach(function (btn) {
