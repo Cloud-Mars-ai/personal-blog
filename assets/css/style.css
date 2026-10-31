@@ -593,15 +593,18 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
 .editorial-section-head h2 { letter-spacing: -.06em; margin: .7rem 0 0; font-family: var(--font-didone); font-size: clamp(3rem, 6vw, 6rem); font-weight:400; line-height: .95; }
 .editorial-section-head > p { color: var(--ink-soft); margin: 0; line-height: 1.8; }
 .editorial-section-head .text-link { justify-self: end; }
-.editorial-projects { border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr); display: grid; }
+.editorial-projects { border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; }
 .editorial-projects .project-card {
-  border: 0; border-right: 1px solid var(--line-strong); min-height: 30rem; box-shadow: none; backdrop-filter: none;
-  background: 0 0; border-radius: 0; padding: clamp(2rem, 4vw, 3.5rem); transform: none;
+  border: 0; border-right: 1px solid var(--line-strong); min-height: 20rem; box-shadow: none; backdrop-filter: none;
+  background: 0 0; border-radius: 0; padding: clamp(1.6rem, 3vw, 2.6rem); transform: none;
 }
-.editorial-projects .project-card:last-child { border-right: 0; }
+.editorial-projects .project-card:nth-child(2n) { border-right: 0; }
+.editorial-projects .project-card:nth-child(-n+2) { border-bottom: 1px solid var(--line-strong); }
 .editorial-projects .project-card:hover { background: var(--signal-soft); }
-.editorial-projects .project-card h3 { max-width: 14ch; margin-top: 5rem; font-size: clamp(2.2rem, 4.2vw, 4.4rem); line-height: 1; }
-.editorial-projects .metric strong { color: var(--signal); font-family: var(--font-didone); font-size: 1.25rem; }
+.editorial-projects .project-card h3 { max-width: 14ch; margin-top: 2.4rem; font-size: clamp(1.65rem, 2.6vw, 2.5rem); line-height: 1.08; }
+.editorial-projects .project-card > div { height: 100%; display: flex; flex-direction: column; }
+.editorial-projects .project-card .metric { margin-top: auto; }
+.editorial-projects .metric strong { color: var(--signal); font-family: var(--font-didone); font-size: 1.05rem; }
 .editorial-post-list .post-card { grid-template-columns: 9rem minmax(0, 1fr) auto; gap: clamp(1.5rem, 4vw, 4rem); padding: 2.5rem 0; }
 .editorial-post-list .post-card:hover { border-color: var(--signal); background: var(--signal-soft); padding-left: 1rem; padding-right: 1rem; }
 .editorial-post-list .post-card h3 { font-size: clamp(1.65rem, 3vw, 2.75rem); line-height: 1.12; }
@@ -777,7 +780,7 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
 .button:active { transform: scale(.97); }
 .button.primary { border-color: var(--ink); color: var(--paper-strong); background: var(--ink); }
 .button.primary:hover { border-color: var(--signal); background: var(--signal); }
-.about-prose .button { backdrop-filter: none; background: 0 0; border-radius: 0; min-height: 3rem; }
+.about-prose .button { backdrop-filter: none; background: 0 0; border-radius: 0; min-height: 3rem; color: var(--ink); }
 
 /* resume 精确结构 */
 .resume-hero { border-bottom: 1px solid var(--line-strong); grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding: 6rem 0 3rem; display: grid; }
