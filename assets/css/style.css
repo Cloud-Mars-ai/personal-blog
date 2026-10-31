@@ -911,6 +911,22 @@ a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal)
   padding: .3rem .7rem; border-radius: 999px; white-space: nowrap;
 }
 
+/* About 页：自我介绍视频带（封面先行；视频就绪后把 img 换成 video 即可） */
+.about-video { padding: clamp(2.6rem, 5vw, 4rem) 0 0; }
+.about-video-wrap { margin: 0; }
+.about-video-frame {
+  border: 1px solid var(--line-strong); border-radius: .9rem; overflow: hidden;
+  box-shadow: var(--shadow-soft); background: var(--paper-strong);
+}
+.about-video-frame img { display: block; width: 100%; height: auto; }
+.about-video-meta {
+  display: flex; justify-content: space-between; align-items: baseline; gap: .8rem 1rem; flex-wrap: wrap;
+  margin-top: .9rem;
+  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+.about-video-note { color: var(--signal); }
+
 /* ==========================================================================
    Awards 奖状墙
    ========================================================================== */
