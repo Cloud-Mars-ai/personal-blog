@@ -41,6 +41,9 @@
   --nav-bg: #f5f0e6e0;
   --shadow: 0 24px 70px #3a2c1f1f;
   --shadow-soft: 0 10px 32px #3a2c1f14;
+  /* 运动相框层叠投影（近距接触影 + 中距 + 远距，模拟实体照片浮于纸面） */
+  --sport-shadow: 0 1px 2px #1f1a1512, 0 6px 12px -6px #1f1a151f, 0 18px 32px -18px #1f1a1526;
+  --sport-shadow-hover: 0 2px 4px #1f1a1414, 0 14px 28px -12px #1f1a1526, 0 36px 60px -24px #1f1a1533;
   /* 展示栈：拉丁用 Playfair Display（webfont），中文回退思源宋体，再退系统宋体系 */
   --font-didone: "Playfair Display", "Noto Serif SC", Georgia, "Times New Roman", "Songti SC", "STSong", "SimSun", "Source Han Serif SC", serif;
   /* 中文展示栈（大段中文标题用，衬线，思源宋体） */
@@ -49,6 +52,11 @@
   --font-body: "Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
   /* 等宽栈（IBM Plex Mono 为唯一外链 webfont，约 128KB/字重，异步加载） */
   --font-mono: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Consolas, "Courier New", monospace;
+  /* 英文版字体覆盖：--font-display/--font-body 默认中文字体打头，英文模式下英文
+     会渲染成中文字体的拉丁字形（观感发糊、非站点拉丁设计）。英文版改拉丁优先，
+     中文字符（专有名词）经回退落到思源宋/黑体，中英混排自动分工 */
+  --font-display-en: "Playfair Display", "Noto Serif SC", Georgia, "Times New Roman", serif;
+  --font-body-en: "Helvetica Neue", "Noto Sans SC", Helvetica, Arial, sans-serif;
   --max-width: 76rem;
   --content-width: 46rem;
   /* 动效基准曲线（B7）：加权、减速入位 */
@@ -73,9 +81,17 @@
   --nav-bg: #17130fe0;
   --shadow: 0 28px 90px #0000004d;
   --shadow-soft: 0 12px 38px #0003;
+  --sport-shadow: 0 1px 2px #00000038, 0 6px 12px -6px #00000047, 0 18px 32px -18px #00000059;
+  --sport-shadow-hover: 0 2px 4px #00000042, 0 14px 28px -12px #00000059, 0 36px 60px -24px #00000073;
   /* Hero 标题渐变（B5）：深色 白→中灰 */
   --hero-from: #ffffff;
   --hero-to: #9b9b9b;
+}
+
+/* 英文版：拉丁优先字体栈（变量值在 :root 定义，随 lang 切换即时生效） */
+html[lang="en"] {
+  --font-display: var(--font-display-en);
+  --font-body: var(--font-body-en);
 }
 
 /* ---------- Reset / base ---------- */
@@ -1016,12 +1032,42 @@ body.is-leaving { opacity: 0; transition: opacity .5s cubic-bezier(.22,1,.36,1);
 .up-name-block strong { font-family: var(--font-display); font-size: .82rem; font-weight: 600; line-height: 1.35; }
 .up-name-block span { font-family: var(--font-mono); font-size: .56rem; color: var(--muted); }
 
+/* 歌手海报网格：4:5 竖版，复用 up-card 结构 */
+.up-grid--poster { gap: 1.2rem; }
+.up-card--poster .up-photo { aspect-ratio: 4 / 5; }
+
+/* 运动照片墙：拍立得相框 + 3D 透视悬浮（立体感） */
+.sport-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem;
+  margin-top: 1.5rem; perspective: 1400px;
+}
+.sport-card {
+  margin: 0; background: var(--paper-strong); border: 1px solid var(--line);
+  border-radius: .75rem; padding: .55rem .55rem 0;
+  transform: rotate(var(--tilt, 0deg));
+  box-shadow: var(--sport-shadow);
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1);
+}
+.sport-card:hover {
+  transform: rotate(0deg) translateY(-10px) translateZ(40px);
+  box-shadow: var(--sport-shadow-hover);
+}
+.sport-photo { display: block; aspect-ratio: 1 / 1; overflow: hidden; border-radius: .45rem; background: var(--paper); }
+.sport-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.22,1,.36,1); }
+.sport-card:hover .sport-photo img { transform: scale(1.06); }
+.sport-card figcaption { padding: .65rem .5rem .7rem; display: grid; gap: .15rem; text-align: center; }
+.sport-card strong { font-family: var(--font-display); font-size: .84rem; font-weight: 600; line-height: 1.35; }
+.sport-card figcaption span { font-family: var(--font-mono); font-size: .56rem; color: var(--muted); letter-spacing: .05em; }
+
 @media (max-width: 1000px) {
   .up-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sport-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
   .project-listing { width: 100%; }
 }
 @media (max-width: 700px) {
   .up-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .up-grid--poster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sport-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ==========================================================================
