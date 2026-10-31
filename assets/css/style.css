@@ -633,6 +633,30 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
 .closing-number { color: var(--signal); letter-spacing: -.08em; font-family: var(--font-didone); font-size: clamp(4rem, 8vw, 8rem); line-height: .68; display: block; }
 .closing-note p { color: var(--ink-soft); font-size: .95rem; line-height: 1.9; margin-top: 1.4rem; max-width: 32ch; }
 
+/* ---------- Contact band（首页 about 区底部） ---------- */
+.contact-band { border-bottom: 1px solid var(--line-strong); padding: clamp(4.5rem, 9vw, 7.5rem) 0; text-align: center; }
+.contact-title {
+  margin: 0; color: var(--ink);
+  font-family: var(--font-didone); font-style: italic; font-weight: 400;
+  font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -.015em;
+}
+.contact-dot { color: var(--signal); font-style: normal; }
+.contact-list {
+  list-style: none; margin: clamp(2.6rem, 5vw, 4rem) auto 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 64rem; border-top: 1px solid var(--line-strong);
+}
+.contact-list li { padding: clamp(1.5rem, 3vw, 2.2rem) clamp(.8rem, 2vw, 1.8rem) 0; }
+.contact-list li + li { border-left: 1px solid var(--line-strong); }
+.contact-label { display: block; color: var(--ink-soft); font-family: var(--font-mono); font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+.contact-value { display: inline-block; margin-top: .6rem; color: var(--ink); font-family: var(--font-didone); font-size: clamp(1rem, 1.6vw, 1.28rem); line-height: 1.45; overflow-wrap: anywhere; }
+a.contact-value { border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal); }
+@media (max-width: 640px) {
+  .contact-list { grid-template-columns: 1fr; }
+  .contact-list li + li { border-left: 0; border-top: 1px solid var(--line-strong); }
+}
+
 /* ==========================================================================
    搜索弹窗
    ========================================================================== */
