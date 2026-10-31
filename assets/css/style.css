@@ -188,7 +188,10 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   line-height: 1; transition: color .22s, background .22s;
   display: inline-flex; align-items: center; gap: .45rem;
   cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  position: relative;
 }
+/* 隐形扩大垂直命中区：上下各外扩 .55rem（总高约 50px），不改变视觉，小尺寸也容易点中 */
+.desktop-nav a::after { content: ""; position: absolute; left: 0; right: 0; top: -.55rem; bottom: -.55rem; }
 .desktop-nav a svg { width: 15px; height: 15px; }
 .desktop-nav a:hover, .desktop-nav a[aria-current="page"] { color: var(--ink); background: var(--signal-soft); }
 [data-theme="dark"] .desktop-nav a:hover, [data-theme="dark"] .desktop-nav a[aria-current="page"] { background: #eee9df14; }
@@ -646,12 +649,22 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 64rem; border-top: 1px solid var(--line-strong);
 }
-.contact-list li { padding: clamp(1.5rem, 3vw, 2.2rem) clamp(.8rem, 2vw, 1.8rem) 0; }
+.contact-list li { position: relative; padding: clamp(1.5rem, 3vw, 2.2rem) clamp(.8rem, 2vw, 1.8rem) 0; }
 .contact-list li + li { border-left: 1px solid var(--line-strong); }
 .contact-label { display: block; color: var(--ink-soft); font-family: var(--font-mono); font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
 .contact-value { display: inline-block; margin-top: .6rem; color: var(--ink); font-family: var(--font-didone); font-size: clamp(1rem, 1.6vw, 1.28rem); line-height: 1.45; overflow-wrap: anywhere; }
 a.contact-value { border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
 a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal); }
+/* 整项可点：值元素的伪元素透明铺满整个 li，标签与留白区域点击均有反应 */
+.contact-value::after { content: ""; position: absolute; inset: 0; }
+/* 企业微信 ID：按钮化 + 一键复制反馈 */
+.contact-copy { border: 0; background: none; padding: 0; cursor: pointer; }
+.contact-copy:hover { color: var(--signal); }
+.contact-copy-id { border-bottom: 1px dashed var(--line-strong); transition: border-color .2s; }
+.contact-copy:hover .contact-copy-id { border-bottom-color: var(--signal); }
+.contact-copy.is-copied { color: var(--signal); }
+.contact-copy.is-copied .contact-copy-id { display: none; }
+.contact-copy.is-copied .contact-copy-ok { display: inline; }
 @media (max-width: 640px) {
   .contact-list { grid-template-columns: 1fr; }
   .contact-list li + li { border-left: 0; border-top: 1px solid var(--line-strong); }

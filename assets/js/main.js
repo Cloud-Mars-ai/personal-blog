@@ -593,6 +593,35 @@
     setTimeout(initTagline, 0);
   });
 
+  /* ---------- 联系区：企业微信 ID 一键复制（点击后闪现「已复制」） ---------- */
+  document.querySelectorAll(".contact-copy").forEach(function (btn) {
+    var timer = null;
+    var flash = function () {
+      btn.classList.add("is-copied");
+      clearTimeout(timer);
+      timer = setTimeout(function () { btn.classList.remove("is-copied"); }, 1800);
+    };
+    var legacyCopy = function (text) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); flash(); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy") || "";
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(flash, function () { legacyCopy(text); });
+      } else {
+        legacyCopy(text);
+      }
+    });
+  });
+
   /* ---------- 返回顶部 / 年份 ---------- */
   document.querySelectorAll("[data-backtop]").forEach(function (btn) {
     btn.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
