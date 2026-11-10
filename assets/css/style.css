@@ -518,7 +518,7 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
 .tag-cloud { display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
 .tag-cloud span { font-family: var(--font-mono); font-size: .7rem; color: var(--signal); }
 .resume-main > section > h2 {
-  max-width: 18ch; letter-spacing: -.04em; margin: 1.2rem 0; font-family: var(--font-didone); font-weight: 400;
+  max-width: 40ch; letter-spacing: -.04em; margin: 1.2rem 0; font-family: var(--font-didone); font-weight: 400;
   font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.2;
 }
 .resume-section { margin-bottom: 3.5rem; }
