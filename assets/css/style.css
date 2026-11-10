@@ -1086,6 +1086,64 @@ body.is-leaving { opacity: 0; transition: opacity .5s cubic-bezier(.22,1,.36,1);
 .up-grid--poster { gap: 1.2rem; }
 .up-card--poster .up-photo { aspect-ratio: 4 / 5; }
 
+/* UP 主圆形照片墙：14 张照片按内 5 外 9 两环排成近似圆形，内环半角错开；名字浮在照片底部 */
+.up-circle {
+  position: relative;
+  width: min(100%, 660px);
+  aspect-ratio: 1;
+  margin: 3.6rem auto 3.8rem;
+  container-type: size;
+}
+.up-card--circle {
+  position: absolute;
+  left: calc(50% + cos(var(--a)) * var(--r));
+  top: calc(50% + sin(var(--a)) * var(--r));
+  width: var(--size);
+  transform: translate(-50%, -50%) rotate(var(--tilt, 0deg));
+  transition: transform .45s cubic-bezier(.22,1,.36,1), border-color .22s, box-shadow .22s;
+}
+.up-card--circle:hover {
+  transform: translate(-50%, -50%) rotate(var(--tilt, 0deg)) scale(1.07);
+  z-index: 5;
+}
+.up-card--circle .up-photo { aspect-ratio: 1; }
+.up-card--circle figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: grid; gap: .1rem; text-align: left;
+  padding: 1.9rem .7rem .55rem;
+  background: linear-gradient(to top, rgba(24,19,14,.72), rgba(24,19,14,.34) 62%, transparent);
+}
+.up-card--circle figcaption strong { font-size: 2.5cqw; line-height: 1.25; color: #fff; }
+.up-card--circle figcaption span { font-size: 1.5cqw; color: rgba(255,255,255,.82); letter-spacing: .04em; }
+/* 内环 5 张：半径 20.5%，角度与相邻外环片半角错开 */
+.up-circle > :nth-child(1) { --a: -70deg; --r: 20.5%; --size: 20.5%; --tilt: 2.5deg; }
+.up-circle > :nth-child(2) { --a: 2deg; --r: 20.5%; --size: 20.5%; --tilt: -2deg; }
+.up-circle > :nth-child(3) { --a: 74deg; --r: 20.5%; --size: 20.5%; --tilt: 3deg; }
+.up-circle > :nth-child(4) { --a: 146deg; --r: 20.5%; --size: 20.5%; --tilt: -2.5deg; }
+.up-circle > :nth-child(5) { --a: 218deg; --r: 20.5%; --size: 20.5%; --tilt: 2deg; }
+/* 外环 9 张：半径 43.5% */
+.up-circle > :nth-child(6) { --a: -90deg; --r: 43.5%; --size: 23.5%; --tilt: -3deg; }
+.up-circle > :nth-child(7) { --a: -50deg; --r: 43.5%; --size: 23.5%; --tilt: 2.5deg; }
+.up-circle > :nth-child(8) { --a: -10deg; --r: 43.5%; --size: 23.5%; --tilt: -2deg; }
+.up-circle > :nth-child(9) { --a: 30deg; --r: 43.5%; --size: 23.5%; --tilt: 3deg; }
+.up-circle > :nth-child(10) { --a: 70deg; --r: 43.5%; --size: 23.5%; --tilt: -2.5deg; }
+.up-circle > :nth-child(11) { --a: 110deg; --r: 43.5%; --size: 23.5%; --tilt: 2deg; }
+.up-circle > :nth-child(12) { --a: 150deg; --r: 43.5%; --size: 23.5%; --tilt: -3deg; }
+.up-circle > :nth-child(13) { --a: 190deg; --r: 43.5%; --size: 23.5%; --tilt: 2.5deg; }
+.up-circle > :nth-child(14) { --a: 230deg; --r: 43.5%; --size: 23.5%; --tilt: -2deg; }
+@media (max-width: 700px) {
+  .up-circle {
+    width: 100%; aspect-ratio: auto; container-type: normal;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; margin: 1.6rem 0 2rem;
+  }
+  .up-card--circle { position: static; left: auto; top: auto; width: auto; transform: none; }
+  .up-card--circle:hover { transform: translateY(-3px); }
+  .up-card--circle figcaption { padding: 1.5rem .6rem .5rem; }
+  .up-card--circle figcaption strong { font-size: .92rem; }
+  .up-card--circle figcaption span { font-size: .62rem; }
+}
+
 /* 运动照片墙：拍立得相框 + 3D 透视悬浮（立体感） */
 .sport-grid {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem;
