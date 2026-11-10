@@ -21,6 +21,12 @@
 @font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 @font-face { font-family: "Noto Sans SC"; src: url("../fonts/noto-sans-sc-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+/* Inter（latin 子集，第30轮主页排版统一）：拉丁展示字形，中文回退思源黑体 */
+@font-face { font-family: "Inter"; src: url("../fonts/inter-latin-200.woff2") format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../fonts/inter-latin-300.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../fonts/inter-latin-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../fonts/inter-latin-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../fonts/inter-latin-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 
 /* ---------- Design tokens ---------- */
 :root {
@@ -50,6 +56,8 @@
   --font-display: "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Source Han Serif SC", Georgia, serif;
   /* 正文栈：思源黑体（webfont），苹方/雅黑兜底 */
   --font-body: "Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
+  /* 主页展示栈（第30轮）：拉丁 Inter 浅色无衬线（webfont），中文回退思源黑体 */
+  --font-display-sans: "Inter", "Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
   /* 等宽栈（IBM Plex Mono 为唯一外链 webfont，约 128KB/字重，异步加载） */
   --font-mono: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Consolas, "Courier New", monospace;
   /* 英文版字体覆盖：--font-display/--font-body 默认中文字体打头，英文模式下英文
@@ -1430,6 +1438,102 @@ p, li, dd, figcaption, summary { text-wrap: pretty; }
 @keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } }
 .faq-a a { color: var(--signal); border-bottom: 1px solid var(--signal-soft); }
 .faq-a a:hover { border-bottom-color: var(--signal); }
+
+/* ==========================================================================
+   第30轮 · 主页排版统一为参考样式（Inter 浅色无衬线体系）
+   参考样本：大号浅色无衬线姓名 + 宽字距小号标签（Simon Ma / Code & Input & Output）
+   仅作用域 body.page-home，其他页面排版不动；结构 / 响应式 / 功能均不变
+   ========================================================================== */
+body.page-home { font-family: var(--font-display-sans); }
+
+/* ---- Hero：浅色大号姓名（参考主标题：无衬线 ExtraLight，字距微收） ---- */
+body.page-home .profile-intro h1 {
+  font-family: var(--font-display-sans);
+  font-weight: 200; letter-spacing: -.035em; line-height: .84;
+}
+/* 参考副标题：宽字距小号标签 —— profile-role 直接对位 */
+body.page-home .profile-role {
+  font-family: var(--font-display-sans); font-weight: 400;
+  letter-spacing: .24em; font-size: .82rem; line-height: 1.6;
+}
+body.page-home .profile-bio { font-family: var(--font-display-sans); font-size: .98rem; line-height: 1.9; }
+body.page-home .profile-facts dt {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: .16em; font-size: .6rem;
+}
+body.page-home .profile-facts dd { font-family: var(--font-display-sans); font-size: .74rem; line-height: 1.55; }
+
+/* ---- 眉标（eyebrow）：统一为宽字距小标签 ---- */
+body.page-home .eyebrow {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: .22em; font-size: .72rem;
+}
+/* ---- 顶部信息条：等宽改宽字距无衬线 ---- */
+body.page-home .editorial-kicker {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: .18em; font-size: .66rem;
+}
+
+/* ---- CTA 按钮 ---- */
+body.page-home .editorial-actions a {
+  font-family: var(--font-display-sans); font-weight: 500; letter-spacing: .01em;
+}
+
+/* ---- 章节标题层级：h2 中黑 / h3 半粗，字距从衬线的负大值收敛 ---- */
+body.page-home .editorial-section-head h2 {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: -.02em; line-height: 1.02;
+}
+body.page-home .editorial-section-head > p { font-family: var(--font-display-sans); line-height: 1.85; }
+body.page-home .text-link { font-family: var(--font-display-sans); font-weight: 500; letter-spacing: .08em; }
+body.page-home .project-meta {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: .16em; font-size: .64rem;
+}
+body.page-home .project-card h3 {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: -.015em; line-height: 1.16;
+}
+body.page-home .metric strong { font-family: var(--font-display-sans); font-weight: 600; letter-spacing: -.01em; }
+body.page-home .metric span { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: .1em; }
+
+/* ---- 信条标语：浅色大号陈述（参考的大字浅气质） ---- */
+body.page-home .tagline-reveal .tagline-text {
+  font-family: var(--font-display-sans); font-weight: 400;
+  letter-spacing: -.005em; line-height: 1.55;
+}
+
+/* ---- FAQ ---- */
+body.page-home .faq-item summary { font-family: var(--font-display-sans); font-weight: 500; }
+body.page-home .faq-item summary .faq-q-index { font-family: var(--font-display-sans); font-weight: 500; letter-spacing: .1em; }
+body.page-home .faq-item summary .faq-sign { font-family: var(--font-display-sans); font-weight: 300; }
+body.page-home .faq-a { font-family: var(--font-display-sans); }
+
+/* ---- Closing ---- */
+body.page-home .closing-log > h2 {
+  font-family: var(--font-display-sans); font-weight: 500;
+  letter-spacing: -.02em; line-height: 1.06;
+}
+body.page-home .closing-log time { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: .06em; }
+body.page-home .closing-log h3 { font-family: var(--font-display-sans); font-weight: 600; letter-spacing: -.01em; }
+body.page-home .closing-log p { font-family: var(--font-display-sans); line-height: 1.85; }
+body.page-home .closing-number { font-family: var(--font-display-sans); font-weight: 200; letter-spacing: -.02em; }
+body.page-home .closing-note p { font-family: var(--font-display-sans); }
+
+/* ---- Contact band：斜体衬线改浅色无衬线 ---- */
+body.page-home .contact-title {
+  font-family: var(--font-display-sans); font-style: normal; font-weight: 300;
+  letter-spacing: -.02em; line-height: 1.12;
+}
+body.page-home .contact-label { font-family: var(--font-display-sans); font-weight: 500; letter-spacing: .18em; }
+body.page-home .contact-value { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: -.01em; }
+
+/* ---- 肖像说明 / 页脚 ---- */
+body.page-home .profile-portrait figcaption { font-family: var(--font-display-sans); font-weight: 500; letter-spacing: .16em; }
+body.page-home .footer-mark { font-family: var(--font-display-sans); font-weight: 600; letter-spacing: -.01em; }
+body.page-home .footer-mark .mono { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: .04em; }
+body.page-home .footer-copy { font-family: var(--font-display-sans); }
+body.page-home .footer-links { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: .04em; }
 
 /* ---------- 尊重减少动画偏好 ---------- */
 @media (prefers-reduced-motion: reduce) {
