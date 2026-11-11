@@ -65,7 +65,7 @@
     var INDEX = [
       { t: "Chenyu Kong · 首页", d: "AI 应用工程师的个人主页", h: "index.html", k: "首页 cover home" },
       { t: "Profile · 个人档案", d: "编辑杂志风格的个人档案与精选项目", h: "home.html", k: "profile home 档案" },
-      { t: "关于我", d: "我在做什么、实践经历、为什么写作", h: "about.html", k: "about 关于" },
+      { t: "关于我", d: "我是谁、我在做什么、一路怎么走来、工程之外", h: "about.html", k: "about 关于 自我介绍 经历 机械 视觉 机器人" },
       { t: "隐私与条款", d: "数据收集、本地存储与内容使用边界", h: "privacy.html", k: "privacy 隐私 条款" },
       { t: "项目", d: "AI 应用、本地桌面产品与企业系统案例", h: "projects.html", k: "projects 项目" },
       { t: "获奖与荣誉", d: "竞赛获奖、奖学金与志愿服务荣誉", h: "awards.html", k: "awards 获奖 荣誉 竞赛 奖学金" },
