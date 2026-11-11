@@ -1,31 +1,42 @@
 /* ==========================================================================
-   Personal Blog — 交互脚本（对齐原站：vc-theme / dialog 搜索 / 筛选 / 转场）
+   Personal Blog — 交互脚本（vc-skin 三皮肤循环 / dialog 搜索 / 筛选 / 转场）
    ========================================================================== */
 (function () {
   "use strict";
 
-  /* ---------- 主题切换（vc-theme，跟随系统） ---------- */
+  /* ---------- 皮肤切换（vc-skin：deepsea 默认，deepsea → dark → light 循环） ---------- */
   var root = document.documentElement;
+  var THEMES = ["deepsea", "dark", "light"];
+  var DEFAULT_THEME = "deepsea";
   var saved = null;
-  try { saved = localStorage.getItem("vc-theme"); } catch (e) {}
-  var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  try { saved = localStorage.getItem("vc-skin"); } catch (e) {}
+  if (THEMES.indexOf(saved) === -1) saved = null;
+  var theme = saved || DEFAULT_THEME;
   root.dataset.theme = theme;
 
   function syncThemeLabel() {
-    var cur = root.dataset.theme || "light";
+    var cur = THEMES.indexOf(root.dataset.theme) !== -1 ? root.dataset.theme : DEFAULT_THEME;
+    var lang = root.lang === "en" ? "en" : "zh";
+    var d = (window.I18N && window.I18N[lang]) || {};
+    var aria = d["aria_theme_" + cur];
+    var tip = d["tip_theme_" + cur];
     document.querySelectorAll(".theme-toggle").forEach(function (t) {
-      t.setAttribute("aria-label", cur === "dark" ? "切换浅色主题" : "切换深色主题");
+      if (aria) t.setAttribute("aria-label", aria);
+      if (tip) t.setAttribute("title", tip);
     });
   }
   document.querySelectorAll(".theme-toggle").forEach(function (t) {
     t.addEventListener("click", function () {
-      var next = root.dataset.theme === "dark" ? "light" : "dark";
+      var idx = THEMES.indexOf(root.dataset.theme);
+      var next = THEMES[(idx + 1) % THEMES.length];
       root.dataset.theme = next;
-      try { localStorage.setItem("vc-theme", next); } catch (e) {}
+      try { localStorage.setItem("vc-skin", next); } catch (e) {}
       syncThemeLabel();
     });
   });
   syncThemeLabel();
+  /* 语言切换后 i18n 重新写 aria-label，按新语言重建主题标签 */
+  document.addEventListener("i18napplied", syncThemeLabel);
 
   /* ---------- 标签筛选（data-filter-group） ---------- */
   document.querySelectorAll("[data-filter-group]").forEach(function (group) {

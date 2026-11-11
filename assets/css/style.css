@@ -40,10 +40,10 @@
   --muted: #716a63;
   --line: #1f1a1514;
   --line-strong: #1f1a152e;
-  --signal: #d94b2b;
-  --signal-soft: #d94b2b1a;
-  --trace: #d94b2b;
-  --trace-soft: #d94b2b1f;
+  --signal: #c03d1d;
+  --signal-soft: #c03d1d1a;
+  --trace: #c03d1d;
+  --trace-soft: #c03d1d1f;
   --nav-bg: #f5f0e6e0;
   --shadow: 0 24px 70px #3a2c1f1f;
   --shadow-soft: 0 10px 32px #3a2c1f14;
@@ -95,6 +95,125 @@
   --hero-from: #ffffff;
   --hero-to: #9b9b9b;
 }
+
+/* ==========================================================================
+   深海皮肤 DeepSea（默认皮肤）—— 参考 DeepSeek 官网视觉语言：
+   顶部浅蓝「天光」渐变 + 海军蓝墨色 + #4058e6 信号蓝 + 白色大圆角卡片
+   + 无衬线展示栈。放在深色块之后：与基础组件规则同权时靠后出现者胜，
+   编辑网格（.editorial-projects .project-card）等特例规则在后面，仍赢回平铺样式。
+   ========================================================================== */
+[data-theme="deepsea"] {
+  color-scheme: light;
+  --paper: #f3f6fd;
+  --paper-strong: #ffffff;
+  --surface: #ffffffb8;
+  --surface-solid: #ffffff;
+  --ink: #0f1a30;
+  --ink-soft: #3d4c6b;
+  --muted: #5c6b85;
+  --line: #1c2b5212;
+  --line-strong: #1c2b5226;
+  --signal: #4058e6;
+  --signal-soft: #4058e61a;
+  --trace: #4058e6;
+  --trace-soft: #4058e61f;
+  --nav-bg: #ffffffd9;
+  --shadow: 0 24px 70px #1c2b5222;
+  --shadow-soft: 0 10px 32px #1c2b5214;
+  --sport-shadow: 0 1px 2px #1c2b5212, 0 6px 12px -6px #1c2b521f, 0 18px 32px -18px #1c2b5226;
+  --sport-shadow-hover: 0 2px 4px #1c2b5214, 0 14px 28px -12px #1c2b5226, 0 36px 60px -24px #1c2b5233;
+  /* 展示栈切无衬线：DeepSeek 式干净科技感（拉丁 Inter，中文回退思源黑体） */
+  --font-didone: "Inter", "Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Noto Sans SC", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Source Han Sans SC", Georgia, sans-serif;
+}
+
+/* —— 天光渐变：页面顶部浅蓝辉光 + 右侧淡紫次辉光（body 背景传播到画布，不随滚动） —— */
+[data-theme="deepsea"] body {
+  background:
+    radial-gradient(56rem 32rem at 50% -7rem, #d9e4ff 0%, #e7eeff 42%, rgba(231,238,255,0) 72%),
+    radial-gradient(44rem 26rem at 86% -5rem, #e3dcff 0%, #eae5ff 46%, rgba(234,229,255,0) 72%),
+    var(--paper);
+}
+/* 干净数字表面：纸质颗粒几乎隐去 */
+[data-theme="deepsea"] .grain { opacity: .018; }
+
+/* —— 导航：白色玻璃胶囊 + 蓝灰投影 —— */
+[data-theme="deepsea"] .header-inner::before { border-radius: 1.3rem; }
+[data-theme="deepsea"] .nav-tray { box-shadow: 0 .65rem 1.8rem #1c2b5214, inset 0 1px #ffffffcc; }
+
+/* —— 主题图标：深海皮肤显示波浪（太阳/月亮让位） —— */
+.theme-toggle .theme-icon-sea { display: none; }
+[data-theme="deepsea"] .theme-toggle .theme-icon-light,
+[data-theme="deepsea"] .theme-toggle .theme-icon-dark { display: none; }
+[data-theme="deepsea"] .theme-toggle .theme-icon-sea { display: block; }
+
+/* —— 卡片：白色实底 + 大圆角 + 蓝灰软投影（DeepSeek 特征卡） —— */
+[data-theme="deepsea"] .project-card,
+[data-theme="deepsea"] .award-card,
+[data-theme="deepsea"] .up-card {
+  background: var(--surface-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--line-strong);
+}
+[data-theme="deepsea"] .award-card,
+[data-theme="deepsea"] .up-card { border-radius: 1.15rem; }
+[data-theme="deepsea"] .project-card { border-radius: 1.75rem; }
+
+/* —— 按钮：主行动 = 信号蓝实心胶囊；次级 = DeepSeek 式淡蓝填充 pill —— */
+[data-theme="deepsea"] .button { background: #eef2fb; border-color: #eef2fb; backdrop-filter: none; -webkit-backdrop-filter: none; }
+[data-theme="deepsea"] .tag,
+[data-theme="deepsea"] .hobby-tags span { background: #eef2fb; border-color: #eef2fb; }
+[data-theme="deepsea"] .button.primary,
+[data-theme="deepsea"] .resume-link,
+[data-theme="deepsea"] .btn-solid { background: var(--signal); border-color: var(--signal); color: #ffffff; }
+[data-theme="deepsea"] .button.primary:hover,
+[data-theme="deepsea"] .resume-link:hover,
+[data-theme="deepsea"] .btn-solid:hover { background: #3648c8; border-color: #3648c8; }
+/* 蓝底上的箭头改白，避免同色不可见 */
+[data-theme="deepsea"] .resume-link .arr { color: #ffffff; opacity: .82; }
+[data-theme="deepsea"] .filter-button:hover,
+[data-theme="deepsea"] .filter-button[aria-pressed="true"] { background: var(--signal); color: #ffffff; }
+
+/* —— 封面/入口页：浅蓝纸 + 蓝 accent + 蓝灰纹理线 —— */
+[data-theme="deepsea"] .cover {
+  --cover-paper: #eaf1fe; --cover-ink: #0f1a30; --cover-muted: #5c6b85;
+  --cover-line: #1c2b5222; --cover-accent: #4058e6;
+  background: repeating-linear-gradient(0deg, #1c2b5205 0 1px, transparent 1px 4px), var(--cover-paper);
+}
+[data-theme="deepsea"] .cover-copy h1 { font-weight: 500; }
+
+/* —— 无衬线化后斜体改正体（Inter 未加载斜体字重，合成斜体发虚） —— */
+[data-theme="deepsea"] h1 em,
+[data-theme="deepsea"] .contact-title { font-style: normal; }
+
+/* —— 展示级标题加重：黑体大字号需中黑以上才立得住 —— */
+[data-theme="deepsea"] .page-hero h1,
+[data-theme="deepsea"] .content-header h1,
+[data-theme="deepsea"] .index-hero__title h1,
+[data-theme="deepsea"] .resume-hero h1 { font-weight: 600; }
+[data-theme="deepsea"] .about-prose h2,
+[data-theme="deepsea"] .editorial-section-head h2,
+[data-theme="deepsea"] .resume-main > section > h2,
+[data-theme="deepsea"] .closing-log > h2,
+[data-theme="deepsea"] .award-group-title,
+[data-theme="deepsea"] .resume-doc-head h2,
+[data-theme="deepsea"] .project-card h3,
+[data-theme="deepsea"] .post-card h3,
+[data-theme="deepsea"] .timeline-entry h3,
+[data-theme="deepsea"] .resume-item h3,
+[data-theme="deepsea"] .resume-project h3 { font-weight: 500; }
+
+/* —— 分页强调色统一到蓝族（避免橙色系在蓝皮肤里打架） —— */
+[data-theme="deepsea"] .index-page--writing { --index-accent: #4058e6; }
+[data-theme="deepsea"] .index-page--about { --index-accent: #4a63e0; }
+
+/* —— 搜索弹窗：纹理线/投影/遮罩随皮肤蓝化 —— */
+[data-theme="deepsea"] .search-dialog {
+  background: repeating-linear-gradient(0deg, #1c2b5205 0 1px, transparent 1px 4px), var(--paper-strong);
+  box-shadow: var(--shadow);
+}
+[data-theme="deepsea"] .search-dialog::backdrop { background: #1c2b5280; }
 
 /* 英文版：拉丁优先字体栈（变量值在 :root 定义，随 lang 切换即时生效） */
 html[lang="en"] {
@@ -268,14 +387,14 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
    封面页（首页 /）
    ========================================================================== */
 .cover {
-  --cover-paper: #eee9df; --cover-ink: #171411; --cover-muted: #716a63;
-  --cover-line: #17141133; --cover-accent: #d94b2b;
+  --cover-paper: #f5f0e6; --cover-ink: #171411; --cover-muted: #716a63;
+  --cover-line: #17141133; --cover-accent: #c03d1d;
   background: repeating-linear-gradient(0deg, #17141105 0 1px, transparent 1px 4px), var(--cover-paper);
   position: relative; min-height: calc(100vh - 4rem); overflow: hidden;
   transition: opacity .52s cubic-bezier(.22,1,.36,1), transform .52s cubic-bezier(.22,1,.36,1);
 }
 [data-theme="dark"] .cover {
-  --cover-paper: #171411; --cover-ink: #eee9df; --cover-muted: #a89f95;
+  --cover-paper: #17130f; --cover-ink: #eee9df; --cover-muted: #a89f95;
   --cover-line: #eee9df33; --cover-accent: #ef6748;
   background: repeating-linear-gradient(0deg, #eee9df05 0 1px, transparent 1px 4px), var(--cover-paper);
 }
@@ -797,8 +916,8 @@ a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal)
    Index 页面系列（about / writing / projects / log）
    ========================================================================== */
 .index-page { --index-accent: var(--signal); }
-.index-page--writing { --index-accent: #e05a3a; }
-.index-page--about { --index-accent: #df6b4e; }
+.index-page--writing { --index-accent: #bf3f1c; }
+.index-page--about { --index-accent: #ae4c2e; }
 [data-theme="dark"] .index-page--writing { --index-accent: #f07a5d; }
 [data-theme="dark"] .index-page--about { --index-accent: #f18a70; }
 .index-page .eyebrow { color: var(--index-accent); }
@@ -963,7 +1082,10 @@ a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal)
   padding: .16rem .46rem; border-radius: 999px; border: 1px solid currentColor; justify-self: start; line-height: 1.4;
 }
 .level-national { color: var(--signal); }
-.level-provincial { color: #bf7a28; }
+/* 省级奖项徽章：浅色皮肤（light/deepsea）用深琥珀，深色皮肤用亮琥珀，
+   各自在所在卡片底色上均达 WCAG AA 4.5:1 */
+.level-provincial { color: #966014; }
+[data-theme="dark"] .level-provincial { color: #d99a3d; }
 .level-school { color: var(--ink-soft); }
 .level-college { color: var(--muted); }
 .award-name { font-family: var(--font-display); font-size: .9rem; font-weight: 600; line-height: 1.5; }
