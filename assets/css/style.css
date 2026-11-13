@@ -1018,21 +1018,99 @@ a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal)
   padding: .3rem .7rem; border-radius: 999px; white-space: nowrap;
 }
 
-/* About 页：自我介绍视频带（封面先行；视频就绪后把 img 换成 video 即可） */
+/* About 页：自我介绍视频（9:16 竖屏播放器 + 右侧章节索引） */
 .about-video { padding: clamp(2.6rem, 5vw, 4rem) 0 0; }
-.about-video-wrap { margin: 0; }
-.about-video-frame {
-  border: 1px solid var(--line-strong); border-radius: .9rem; overflow: hidden;
-  box-shadow: var(--shadow-soft); background: var(--paper-strong);
+.about-video-head { display: grid; gap: .5rem; max-width: 48rem; }
+.about-video-title {
+  font-family: var(--font-didone); font-weight: 400; letter-spacing: -.045em;
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem); line-height: 1.06; margin: .1rem 0 0;
 }
-.about-video-frame img { display: block; width: 100%; height: auto; }
+.about-video-lede {
+  margin: .2rem 0 0; max-width: 40rem; color: var(--ink-soft);
+  font-family: var(--font-display); font-size: clamp(.98rem, 1.35vw, 1.12rem); line-height: 1.8;
+}
+.about-video-body {
+  display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  gap: clamp(1.8rem, 4vw, 3.6rem); align-items: start;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+.about-video-wrap { margin: 0; max-width: 21rem; }
+.about-video-frame {
+  padding: .5rem; border: 1px solid var(--line-strong); border-radius: .95rem;
+  background: var(--paper-strong); box-shadow: var(--shadow-soft);
+}
+.about-video-player {
+  display: block; width: 100%; height: auto; aspect-ratio: 9 / 16;
+  border-radius: .5rem; background: #17130f; object-fit: cover;
+}
 .about-video-meta {
-  display: flex; justify-content: space-between; align-items: baseline; gap: .8rem 1rem; flex-wrap: wrap;
-  margin-top: .9rem;
-  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: baseline; gap: .4rem 1rem; flex-wrap: wrap;
+  margin-top: .85rem;
+  font-family: var(--font-mono); font-size: .63rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--muted);
 }
 .about-video-note { color: var(--signal); }
+
+.about-video-side { display: grid; gap: 1rem; }
+.about-video-side-label {
+  display: flex; align-items: center; gap: .7rem; margin: 0;
+  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.about-video-side-label::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+.about-video-chapters {
+  list-style: none; margin: 0; padding: 0;
+  border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong);
+}
+.about-video-chapters li { border: 0; }
+.about-video-chapters button {
+  width: 100%; display: flex; align-items: baseline; gap: .7rem;
+  padding: .5rem .15rem;
+  background: none; border: 0; border-radius: .3rem; cursor: pointer; text-align: left;
+  color: inherit; font: inherit;
+  transition: background-color .25s var(--ease);
+}
+.about-video-chapters button:hover { background: var(--signal-soft); }
+.about-video-chapters button:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.ch-num {
+  flex: none; width: 1.6rem;
+  font-family: var(--font-mono); font-size: .6rem; letter-spacing: .08em;
+  color: var(--muted); transition: color .25s var(--ease);
+}
+.ch-name {
+  flex: none;
+  font-family: var(--font-display); font-size: .97rem; line-height: 1.5;
+  color: var(--ink); transition: color .25s var(--ease);
+}
+.ch-dots {
+  flex: 1 1 auto; min-width: 1rem; height: 0;
+  border-bottom: 1px dotted color-mix(in srgb, var(--ink) 28%, transparent);
+  transform: translateY(-.18em);
+  transition: border-color .25s var(--ease);
+}
+.ch-time {
+  flex: none;
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .06em;
+  color: var(--muted); font-variant-numeric: tabular-nums;
+  transition: color .25s var(--ease);
+}
+.about-video-chapters button:hover .ch-name,
+.about-video-chapters button:hover .ch-time,
+.about-video-chapters button.is-active .ch-name,
+.about-video-chapters button.is-active .ch-num { color: var(--signal); }
+.about-video-chapters button.is-active .ch-time { color: var(--ink-soft); }
+.about-video-chapters button.is-active .ch-dots,
+.about-video-chapters button:hover .ch-dots { border-color: var(--signal); }
+.about-video-chapters button.is-active { box-shadow: inset 2px 0 0 var(--signal); }
+.about-video-foot {
+  margin: 0; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .about-video-body { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .about-video-wrap { max-width: min(100%, 19rem); margin-inline: auto; }
+  .about-video-chapters button { padding-block: .62rem; }
+}
 
 /* ==========================================================================
    Awards 奖状墙

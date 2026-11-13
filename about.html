@@ -55,15 +55,42 @@
       <div class="index-hero__brief"><p data-i18n="about_intro">北京化工大学在读，机械设计制造及其自动化专业本科生。深耕计算机视觉、机器人与 AI 应用开发，持续构建与开源。</p><dl class="index-hero__facts"><div><dt>Education</dt><dd data-i18n="about_edu_val">本科在读</dd></div><div><dt>Focus</dt><dd data-i18n="about_focus_val">视觉 · 机器人 · AI</dd></div><div><dt>Status</dt><dd data-i18n="about_status_val">Open to work</dd></div></dl></div>
     </header>
     <section class="about-video site-shell" aria-labelledby="about-video-label">
-      <figure class="about-video-wrap">
-        <div class="about-video-frame">
-          <img src="assets/img/about-video-cover.jpg" alt="自我介绍视频封面：This is me." width="1264" height="702" data-i18n-alt="about_video_alt" loading="lazy" decoding="async">
+      <div class="about-video-head">
+        <p class="eyebrow">01 / Self-intro</p>
+        <h2 class="about-video-title" id="about-video-label" data-i18n="about_video_label">自我介绍视频</h2>
+        <p class="about-video-lede" data-i18n="about_video_lede">一分四十二秒，竖屏，一条到底。纸上写字、插画和照片，配我自己念的英文旁白。</p>
+      </div>
+      <div class="about-video-body">
+        <figure class="about-video-wrap">
+          <div class="about-video-frame">
+            <video class="about-video-player" id="self-intro-video" width="720" height="1280" poster="assets/videos/self-intro-poster.jpg" preload="metadata" playsinline controls data-i18n-aria="about_video_player" aria-label="自我介绍视频播放器">
+              <source src="assets/videos/self-intro-720p.mp4" type="video/mp4">
+              <p data-i18n="about_video_fallback">你的浏览器不支持内嵌视频，可直接下载观看。</p>
+            </video>
+          </div>
+          <figcaption class="about-video-meta">
+            <span class="about-video-spec">1:42 · 720 × 1280</span>
+            <span class="about-video-note" data-i18n="about_video_note">英文旁白 · 音乐 MKJ</span>
+          </figcaption>
+        </figure>
+        <div class="about-video-side">
+          <p class="about-video-side-label" data-i18n="about_video_chapters">章节 Chapters</p>
+          <ol class="about-video-chapters" data-video-chapters>
+            <li><button type="button" data-t="0"><span class="ch-num">01</span><span class="ch-name" data-i18n="av_ch1">封面</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:00</span></button></li>
+            <li><button type="button" data-t="4"><span class="ch-num">02</span><span class="ch-name" data-i18n="av_ch2">打招呼</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:04</span></button></li>
+            <li><button type="button" data-t="10"><span class="ch-num">03</span><span class="ch-name" data-i18n="av_ch3">性格 INFP</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:10</span></button></li>
+            <li><button type="button" data-t="19"><span class="ch-num">04</span><span class="ch-name" data-i18n="av_ch4">运动</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:19</span></button></li>
+            <li><button type="button" data-t="31"><span class="ch-num">05</span><span class="ch-name" data-i18n="av_ch5">旅行</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:31</span></button></li>
+            <li><button type="button" data-t="35"><span class="ch-num">06</span><span class="ch-name" data-i18n="av_ch6">舞台</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:35</span></button></li>
+            <li><button type="button" data-t="42"><span class="ch-num">07</span><span class="ch-name" data-i18n="av_ch7">在看什么</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:42</span></button></li>
+            <li><button type="button" data-t="57"><span class="ch-num">08</span><span class="ch-name" data-i18n="av_ch8">机械臂标定</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">0:57</span></button></li>
+            <li><button type="button" data-t="70"><span class="ch-num">09</span><span class="ch-name" data-i18n="av_ch9">开源作品</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">1:10</span></button></li>
+            <li><button type="button" data-t="83"><span class="ch-num">10</span><span class="ch-name" data-i18n="av_ch10">获奖</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">1:23</span></button></li>
+            <li><button type="button" data-t="95"><span class="ch-num">11</span><span class="ch-name" data-i18n="av_ch11">收尾</span><i class="ch-dots" aria-hidden="true"></i><span class="ch-time">1:35</span></button></li>
+          </ol>
+          <p class="about-video-foot" data-i18n="about_video_foot">点任意一条，跳到那一段。</p>
         </div>
-        <figcaption class="about-video-meta">
-          <span class="about-video-label" id="about-video-label" data-i18n="about_video_label">自我介绍视频</span>
-          <span class="about-video-note" data-i18n="about_video_note">视频制作中，即将上线</span>
-        </figcaption>
-      </figure>
+      </div>
     </section>
     <section class="about-layout site-shell listing-section">
       <div class="about-statement"><span class="about-monogram" aria-hidden="true">CK</span><p data-i18n="about_statement">我相信，真正有价值的工程不止要「做出来」，还需要可评测、可观测、可追溯，并对自己的能力边界保持诚实。</p></div>

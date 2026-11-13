@@ -633,6 +633,54 @@
     });
   });
 
+  /* ---------- About 自我介绍视频：章节跳转 + 当前段落高亮 ---------- */
+  var avVideo = document.getElementById("self-intro-video");
+  var avList = document.querySelector("[data-video-chapters]");
+  if (avVideo && avList) {
+    var avBtns = Array.prototype.slice.call(avList.querySelectorAll("button[data-t]"));
+    var avMarks = avBtns.map(function (b) { return parseFloat(b.getAttribute("data-t")) || 0; });
+    var avSeek = function (t) {
+      var go = function () {
+        var p = avVideo.play();
+        try { avVideo.currentTime = t; } catch (e) {}
+        if (p && p.catch) p.catch(function () {});
+        // 兜底：个别浏览器在 play() 与 seek 同时发生时会把 seek 丢掉，600ms 后校一次
+        window.setTimeout(function () {
+          try {
+            if (!avVideo.paused && Math.abs(avVideo.currentTime - t) > 4) { avVideo.currentTime = t; }
+          } catch (e) {}
+        }, 600);
+      };
+      if (avVideo.readyState >= 1) { go(); return; }
+      avVideo.addEventListener("loadedmetadata", function once() {
+        avVideo.removeEventListener("loadedmetadata", once);
+        go();
+      });
+      avVideo.load();
+    };
+    var avMark = function (t) {
+      var idx = -1;
+      for (var i = 0; i < avMarks.length; i++) { if (t + .45 >= avMarks[i]) idx = i; }
+      avBtns.forEach(function (b, i) {
+        var on = i === idx;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-current", on ? "true" : "false");
+      });
+    };
+    avBtns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        avSeek(parseFloat(b.getAttribute("data-t")) || 0);
+        var r = avVideo.getBoundingClientRect();
+        if (r.top < 0 || r.bottom > window.innerHeight) {
+          avVideo.scrollIntoView({ block: "center", behavior: reduced ? "auto" : "smooth" });
+        }
+      });
+    });
+    avVideo.addEventListener("timeupdate", function () { avMark(avVideo.currentTime); });
+    avVideo.addEventListener("seeked", function () { avMark(avVideo.currentTime); });
+    avMark(0);
+  }
+
   /* ---------- 返回顶部 / 年份 ---------- */
   document.querySelectorAll("[data-backtop]").forEach(function (btn) {
     btn.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
