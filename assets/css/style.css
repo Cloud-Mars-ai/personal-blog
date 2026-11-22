@@ -195,7 +195,6 @@
 [data-theme="deepsea"] .about-prose h2,
 [data-theme="deepsea"] .editorial-section-head h2,
 [data-theme="deepsea"] .resume-main > section > h2,
-[data-theme="deepsea"] .closing-log > h2,
 [data-theme="deepsea"] .award-group-title,
 [data-theme="deepsea"] .resume-doc-head h2,
 [data-theme="deepsea"] .project-card h3,
@@ -739,16 +738,7 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
 .editorial-post-list .post-card:hover { border-color: var(--signal); background: var(--signal-soft); padding-left: 1rem; padding-right: 1rem; }
 .editorial-post-list .post-card h3 { font-size: clamp(1.65rem, 3vw, 2.75rem); line-height: 1.12; }
 
-.editorial-closing { grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr); padding-top: clamp(5rem, 9vw, 8rem); padding-bottom: clamp(5rem, 9vw, 8rem); display: grid; }
-.closing-log > h2 { letter-spacing: -.055em; max-width: 15ch; margin: 1.2rem 0 3.5rem; font-family: var(--font-didone); font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 400; line-height: 1.02; }
-.closing-log time { color: var(--signal); font-family: var(--font-mono); font-size: .68rem; }
-.closing-log h3 { margin: .65rem 0; font-family: var(--font-didone); font-size: 1.4rem; font-weight: 600; }
-.closing-log h3 a:hover { color: var(--signal); }
-.closing-log p { color: var(--ink-soft); font-size: .9rem; line-height: 1.8; max-width: 40ch; }
-.closing-log > .text-link { margin-top: 1.5rem; }
-.closing-note { border-left: 1px solid var(--line-strong); padding-left: clamp(2rem, 5vw, 5rem); }
 .closing-number { color: var(--signal); letter-spacing: -.08em; font-family: var(--font-didone); font-size: clamp(4rem, 8vw, 8rem); line-height: .68; display: block; }
-.closing-note p { color: var(--ink-soft); font-size: .95rem; line-height: 1.9; margin-top: 1.4rem; max-width: 32ch; }
 
 /* ---------- Contact band（首页 about 区底部） ---------- */
 .contact-band { border-bottom: 1px solid var(--line-strong); padding: clamp(4.5rem, 9vw, 7.5rem) 0; text-align: center; }
@@ -862,7 +852,7 @@ a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal)
 @media (max-width: 960px) {
   .desktop-nav { display: none; }
   .mobile-menu { display: block; }
-  .editorial-hero-grid, .editorial-closing, .profile-hero-grid { grid-template-columns: 1fr; }
+  .editorial-hero-grid, .profile-hero-grid { grid-template-columns: 1fr; }
   .editorial-intro { padding-right: 0; }
   .editorial-index { border-top: 1px solid var(--line-strong); border-left: 0; padding: 3rem 0; }
   .editorial-section-head { grid-template-columns: 1fr; gap: 1.2rem; }
@@ -1564,61 +1554,6 @@ p, li, dd, figcaption, summary { text-wrap: pretty; }
 /* 标题内的信号色句点保持实色 */
 .profile-intro h1 em { color: var(--signal); -webkit-text-fill-color: var(--signal); }
 
-/* ---------- Tagline reveal（B11：逐词点亮的标语章节） ---------- */
-.tagline-reveal {
-  border-bottom: 1px solid var(--line-strong);
-  padding: clamp(5.5rem, 11vw, 9.5rem) 0;
-}
-.tagline-reveal .eyebrow { margin-bottom: clamp(1.6rem, 3vw, 2.4rem); }
-.tagline-reveal .tagline-text {
-  font-family: var(--font-display);
-  font-weight: 600; letter-spacing: -.01em;
-  font-size: clamp(1.75rem, 4.4vw, 3.25rem);
-  line-height: 1.55;
-  max-width: 46rem;
-  color: var(--ink);
-}
-.tagline-reveal .tw {
-  opacity: .28;
-  transition: opacity .6s var(--ease);
-  will-change: opacity;
-}
-.tagline-reveal .tw.is-lit { opacity: 1; }
-
-/* ---------- FAQ（A2：异议处理 + AEO 问答结构） ---------- */
-.faq-section { border-bottom: 1px solid var(--line-strong); }
-.faq-list { max-width: 52rem; border-top: 1px solid var(--line-strong); }
-.faq-item { border-bottom: 1px solid var(--line); }
-.faq-item summary {
-  cursor: pointer; list-style: none;
-  display: flex; align-items: baseline; gap: 1rem;
-  padding: 1.35rem .2rem;
-  font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(1rem, 1.6vw, 1.12rem); line-height: 1.5;
-  transition: color .22s var(--ease);
-}
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary:hover { color: var(--signal); }
-.faq-item summary .faq-q-index {
-  color: var(--signal); font-family: var(--font-mono); font-weight: 500;
-  font-size: .68rem; letter-spacing: .08em; flex: none;
-}
-.faq-item summary .faq-sign {
-  margin-left: auto; flex: none; color: var(--signal);
-  font-family: var(--font-mono); font-size: 1.1rem; line-height: 1;
-  transition: transform .3s var(--ease);
-}
-.faq-item[open] summary .faq-sign { transform: rotate(45deg); }
-.faq-item[open] summary { color: var(--ink); }
-.faq-a {
-  padding: 0 .2rem 1.5rem 2.6rem;
-  color: var(--ink-soft); font-size: .95rem; line-height: 1.9; max-width: 46rem;
-}
-.faq-item[open] .faq-a { animation: faq-in .4s var(--ease) both; }
-@keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } }
-.faq-a a { color: var(--signal); border-bottom: 1px solid var(--signal-soft); }
-.faq-a a:hover { border-bottom-color: var(--signal); }
-
 /* ==========================================================================
    第30轮 · 主页排版统一为参考样式（Inter 浅色无衬线体系）
    参考样本：大号浅色无衬线姓名 + 宽字距小号标签（Simon Ma / Code & Input & Output）
@@ -1677,29 +1612,6 @@ body.page-home .project-card h3 {
 body.page-home .metric strong { font-family: var(--font-display-sans); font-weight: 600; letter-spacing: -.01em; }
 body.page-home .metric span { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: .1em; }
 
-/* ---- 信条标语：浅色大号陈述（参考的大字浅气质） ---- */
-body.page-home .tagline-reveal .tagline-text {
-  font-family: var(--font-display-sans); font-weight: 400;
-  letter-spacing: -.005em; line-height: 1.55;
-}
-
-/* ---- FAQ ---- */
-body.page-home .faq-item summary { font-family: var(--font-display-sans); font-weight: 500; }
-body.page-home .faq-item summary .faq-q-index { font-family: var(--font-display-sans); font-weight: 500; letter-spacing: .1em; }
-body.page-home .faq-item summary .faq-sign { font-family: var(--font-display-sans); font-weight: 300; }
-body.page-home .faq-a { font-family: var(--font-display-sans); }
-
-/* ---- Closing ---- */
-body.page-home .closing-log > h2 {
-  font-family: var(--font-display-sans); font-weight: 500;
-  letter-spacing: -.02em; line-height: 1.06;
-}
-body.page-home .closing-log time { font-family: var(--font-display-sans); font-weight: 400; letter-spacing: .06em; }
-body.page-home .closing-log h3 { font-family: var(--font-display-sans); font-weight: 600; letter-spacing: -.01em; }
-body.page-home .closing-log p { font-family: var(--font-display-sans); line-height: 1.85; }
-body.page-home .closing-number { font-family: var(--font-display-sans); font-weight: 200; letter-spacing: -.02em; }
-body.page-home .closing-note p { font-family: var(--font-display-sans); }
-
 /* ---- Contact band：斜体衬线改浅色无衬线 ---- */
 body.page-home .contact-title {
   font-family: var(--font-display-sans); font-style: normal; font-weight: 300;
@@ -1719,9 +1631,6 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
 @media (prefers-reduced-motion: reduce) {
   .mobile-menu[open] nav a { animation: none; opacity: 1; }
   .mobile-menu nav { animation: none; }
-  .tagline-reveal .tw { opacity: 1; transition: none; }
-  .faq-item[open] .faq-a { animation: none; }
-  .faq-item summary .faq-sign { transition: none; }
 }
 
 /* ==========================================================================
@@ -2204,21 +2113,11 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
 @media (max-width: 560px) { .band-wave, .band-wave--top { height: 1.9rem; } .band-wave--top { top: -1.9rem; } }
 
 /* ---- 去除板块间硬 border，过渡交给浪带 ---- */
-.home-band, .contact-band, .tagline-reveal, .faq-section { border-bottom: 0; }
+.home-band, .contact-band { border-bottom: 0; }
 
-/* ---- 深潮带：工作信条 ---- */
-.tagline-reveal {
-  position: relative; overflow: hidden;
-  background: var(--deep-band); color: var(--deep-band-ink);
-  padding: clamp(6.5rem, 13vw, 11rem) 0;
-}
-.tagline-reveal .eyebrow { color: var(--deep-band-soft); }
-.tagline-reveal .eyebrow::before { background: var(--deep-band-soft); }
-.tagline-reveal .tagline-text { color: var(--deep-band-ink); }
-.tagline-reveal .tw { opacity: .3; }
-
-/* ---- 收尾区：暖渐变 + 底部海岸线 ---- */
-body.page-home .editorial-closing {
-  position: relative; overflow: hidden;
-  background: linear-gradient(180deg, transparent 0%, var(--signal-soft) 46%), var(--paper);
+/* ---- 主页内容区块全屏化（2026-11-22 第37轮：应用户要求，板块不再挤在中间窄列）---- */
+body.page-home .site-main > .site-shell,
+body.page-home .site-footer .site-shell {
+  width: 100%;
+  padding-inline: clamp(1.5rem, 4vw, 4.5rem);
 }
