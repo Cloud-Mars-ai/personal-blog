@@ -1723,3 +1723,417 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
   .faq-item[open] .faq-a { animation: none; }
   .faq-item summary .faq-sign { transition: none; }
 }
+
+/* ==========================================================================
+   第31轮 · 液态毛玻璃（Liquid Glass）+ 全站柔和化
+   - 玻璃 token：半透明底 + blur/saturate + 内高光 + 柔和投影
+   - 按钮 / 卡片 / 标签统一玻璃质感；直角与锐角全面圆角化
+   ========================================================================== */
+:root {
+  --glass-bg: #faf6ed99;
+  --glass-bg-strong: #faf6edc4;
+  --glass-border: #1f1a1526;
+  --glass-hl: #ffffffa8;
+  --glass-shadow: 0 .6rem 1.8rem #3a2c1f14;
+  --glass-blur: blur(18px) saturate(160%);
+}
+[data-theme="dark"] {
+  --glass-bg: #221d1699;
+  --glass-bg-strong: #221d16c4;
+  --glass-border: #f5f0e62e;
+  --glass-hl: #f5f0e61f;
+  --glass-shadow: 0 .8rem 2.2rem #00000038;
+}
+[data-theme="deepsea"] {
+  --glass-bg: #ffffffa3;
+  --glass-bg-strong: #ffffffcf;
+  --glass-border: #1c2b5226;
+  --glass-hl: #ffffffd9;
+  --glass-shadow: 0 .7rem 2rem #1c2b521a;
+}
+
+/* ---------- 通用玻璃混合类 ---------- */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+}
+
+/* ---------- 按钮：液态毛玻璃胶囊 ---------- */
+.button {
+  border: 1px solid var(--glass-border); min-height: 2.9rem; color: var(--ink);
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  border-radius: 999px; justify-content: center; align-items: center; gap: .6rem;
+  padding: .72rem 1.15rem; font-size: .78rem; font-weight: 500; position: relative; overflow: hidden;
+  transition: border-color .25s, background .25s, color .25s, transform .18s var(--ease), box-shadow .25s;
+  display: inline-flex;
+}
+/* 液面高光：悬停时一道柔光扫过 */
+.button::after, .editorial-actions a::after, .resume-link::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(115deg, transparent 34%, var(--glass-hl) 50%, transparent 66%);
+  opacity: 0; transition: opacity .35s;
+}
+.button:hover::after, .editorial-actions a:hover::after, .resume-link:hover::after { opacity: .55; }
+.button:hover { border-color: var(--signal); background: var(--glass-bg-strong); transform: translateY(-2px); box-shadow: var(--shadow-soft), inset 0 1px var(--glass-hl); }
+.button:active { transform: scale(.97); }
+.button.primary {
+  border-color: transparent; color: #fff;
+  background: color-mix(in srgb, var(--signal) 90%, transparent);
+  box-shadow: 0 .5rem 1.4rem color-mix(in srgb, var(--signal) 34%, transparent), inset 0 1px #ffffff59;
+}
+.button.primary:hover { border-color: transparent; background: var(--signal); color: #fff; }
+.about-prose .button { backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); background: var(--glass-bg); border-radius: 999px; min-height: 3rem; color: var(--ink); }
+
+/* 实心 / 描边小按钮（btn-solid / btn-line）：统一胶囊玻璃 */
+.btn-solid {
+  font-family: var(--font-mono); font-size: .8rem; letter-spacing: .04em; padding: .75rem 1.25rem;
+  background: var(--glass-bg-strong); color: var(--ink); border: 1px solid var(--glass-border);
+  border-radius: 999px; backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: border-color .25s, transform .15s var(--ease), box-shadow .25s;
+}
+.btn-solid:hover { border-color: var(--signal); transform: translateY(-2px); }
+.btn-line {
+  font-family: var(--font-mono); font-size: .8rem; letter-spacing: .04em; padding: .75rem 1.25rem;
+  border: 1px solid var(--glass-border); color: var(--signal); border-radius: 999px;
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: border-color .25s, transform .15s var(--ease), box-shadow .25s;
+}
+.btn-line:hover { border-color: var(--signal); transform: translateY(-2px); }
+
+/* ---------- 顶栏工具：胶囊玻璃 ---------- */
+.resume-link {
+  color: var(--ink); background: var(--glass-bg); font-family: var(--font-mono);
+  border: 1px solid var(--glass-border); border-radius: 999px; padding: .55rem .9rem; font-size: .72rem; line-height: 1;
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: border-color .25s, transform .18s var(--ease), color .25s; white-space: nowrap; position: relative; overflow: hidden;
+}
+.resume-link:hover { border-color: var(--signal); transform: translateY(-2px); }
+.resume-link .arr { color: var(--signal); }
+.lang-toggle {
+  color: var(--ink-soft); font-family: var(--font-mono); font-size: .72rem; font-weight: 500;
+  letter-spacing: .05em; cursor: pointer; background: var(--glass-bg);
+  border: 1px solid var(--glass-border); border-radius: 999px; padding: .46rem .68rem; line-height: 1;
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: color .22s, border-color .22s, transform .15s var(--ease);
+}
+.lang-toggle:hover { color: var(--signal); border-color: var(--signal); transform: translateY(-1px); }
+.icon-button {
+  width: 2.35rem; height: 2.35rem; color: var(--ink-soft); cursor: pointer;
+  background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: .95rem;
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  place-items: center; padding: 0;
+  transition: color .22s, border-color .22s, transform .15s var(--ease); display: grid;
+}
+.icon-button:hover { color: var(--signal); border-color: var(--signal); transform: translateY(-1px); }
+.icon-button:active { transform: scale(.93); }
+
+/* ---------- 首页 CTA（editorial-actions） ---------- */
+.editorial-actions a {
+  border: 1px solid var(--glass-border); justify-content: space-between; align-items: center; gap: 1.25rem;
+  min-width: 10rem; min-height: 3.25rem; padding: 0 1.15rem; font-size: .84rem; font-family: var(--font-display);
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  border-radius: 999px; position: relative; overflow: hidden;
+  transition: color .25s, background .25s, border-color .25s, transform .2s var(--ease);
+  display: inline-flex;
+}
+.editorial-actions a:hover { color: var(--paper); background: var(--ink); border-color: transparent; transform: translateY(-2px); }
+.editorial-actions a:first-child { border-color: color-mix(in srgb, var(--signal) 55%, transparent); }
+.editorial-actions a:first-child:hover { background: var(--signal); border-color: var(--signal); color: #fff; }
+.editorial-actions a:first-child:hover span { color: #fff; }
+.editorial-actions a span { color: var(--signal); transition: color .25s; }
+.editorial-actions a:hover span { color: inherit; }
+
+/* ---------- 筛选按钮 ---------- */
+.filter-button {
+  border: 1px solid var(--glass-border); min-height: 2.75rem; color: var(--ink-soft);
+  font-family: var(--font-mono); cursor: pointer; background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 999px; letter-spacing: .04em; padding: .75rem 1.15rem; font-size: .7rem;
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: color .22s, background .22s, border-color .22s, transform .15s var(--ease);
+  margin-right: .5rem; margin-bottom: .5rem;
+}
+.filter-button:hover, .filter-button[aria-pressed="true"] { color: #fff; background: var(--signal); border-color: transparent; transform: translateY(-2px); }
+
+/* ---------- 标签 / 兴趣标签：玻璃 pill ---------- */
+.tag {
+  border: 1px solid var(--glass-border); color: var(--ink-soft); background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 999px; padding: .38rem .72rem; font-family: var(--font-mono); font-size: .68rem; line-height: 1.2;
+  box-shadow: inset 0 1px var(--glass-hl); transition: border-color .22s, color .22s;
+}
+.tag:hover { border-color: var(--signal); color: var(--signal); }
+.hobby-tags span {
+  font-family: var(--font-mono); font-size: .74rem; padding: .52rem .95rem;
+  border: 1px solid var(--glass-border); border-radius: 999px; color: var(--ink-soft);
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl); transition: border-color .22s, color .22s, transform .15s var(--ease);
+}
+.hobby-tags span:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-2px); }
+
+/* ---------- 卡片：统一玻璃 + 大圆角 ---------- */
+.project-card {
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  border-radius: 1.5rem;
+}
+.award-card {
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  border-radius: 1.35rem;
+}
+.up-card {
+  border: 1px solid var(--glass-border); border-radius: 1.35rem; background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+}
+.sport-card { border-radius: 1.05rem; }
+.project-listing .project-card { border-radius: 1.15rem; }
+.award-thumb { border-radius: 1.2rem 1.2rem 0 0; }
+
+/* 首页编辑网格项目卡：从分割线改为独立玻璃卡 */
+.editorial-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem; border: 0; }
+.editorial-projects .project-card {
+  border: 1px solid var(--glass-border); min-height: 19rem; box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--glass-bg); border-radius: 1.6rem; padding: clamp(1.6rem, 3vw, 2.6rem);
+}
+.editorial-projects .project-card:nth-child(2n) { border-right: 1px solid var(--glass-border); }
+.editorial-projects .project-card:nth-child(-n+2) { border-bottom: 1px solid var(--glass-border); }
+.editorial-projects .project-card:hover { background: var(--glass-bg-strong); border-color: var(--signal); transform: translateY(-5px); box-shadow: var(--shadow); }
+
+/* ---------- 其他柔和化 ---------- */
+.about-video-frame { border-radius: 1.35rem; }
+.about-video-player { border-radius: .95rem; }
+.search-dialog { border-radius: 1.85rem; }
+.search-close { border-radius: 999px; }
+.search-field { border-radius: 1.05rem; }
+.award-lightbox-close { border-radius: 999px; }
+.profile-avatar .avatar-2d img { border-radius: 1.45rem; }
+.profile-avatar::after { border-radius: 1.9rem; }
+.mobile-menu nav a { border-radius: 1.05rem; }
+.desktop-nav a { border-radius: .85rem; }
+.header-inner::before { border-radius: 1.35rem; }
+.nav-tray { border-radius: 1.15rem; }
+.contact-value { border-radius: .35rem; }
+.award-level { border-radius: 999px; }
+.up-initial { border-radius: 999px; }
+.cover-button { border-radius: 999px; }
+.cover-video-wrap { border-radius: 1.15rem; }
+.post-arrow { border-radius: 999px; }
+
+/* ==========================================================================
+   背景音乐（卡农 · Canon in D）—— 液态玻璃浮动开关
+   ========================================================================== */
+.music-toggle {
+  position: fixed; left: clamp(1rem, 3vw, 2.2rem); bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 97; width: 3.15rem; height: 3.15rem; border-radius: 999px;
+  display: grid; place-items: center; cursor: pointer; color: var(--ink-soft);
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: color .25s, border-color .25s, transform .2s var(--ease);
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+}
+.music-toggle.is-ready { opacity: 1; transform: none; pointer-events: auto; }
+.music-toggle:hover { color: var(--signal); border-color: var(--signal); }
+.music-toggle:active { transform: scale(.94); }
+.music-toggle svg { width: 1.15rem; height: 1.15rem; }
+.music-toggle .eq-bar { transform-box: fill-box; transform-origin: bottom; }
+.music-toggle.is-playing .eq-bar { animation: eq-bounce 1s ease-in-out infinite; }
+.music-toggle.is-playing .eq-bar:nth-of-type(2) { animation-delay: .18s; }
+.music-toggle.is-playing .eq-bar:nth-of-type(3) { animation-delay: .36s; }
+.music-toggle .music-note { display: block; }
+.music-toggle.is-playing .music-note { display: none; }
+.music-toggle .music-eq { display: none; }
+.music-toggle.is-playing .music-eq { display: block; }
+@keyframes eq-bounce { 0%, 100% { transform: scaleY(.32); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .music-toggle.is-playing .eq-bar { animation: none; } }
+
+/* ==========================================================================
+   Project 页：顶部大图 + 滚动影像条
+   ========================================================================== */
+.projects-hero { padding-top: clamp(1.2rem, 3vw, 2.2rem); }
+.projects-hero-frame {
+  position: relative; margin: 0; border-radius: 1.85rem; overflow: hidden;
+  border: 1px solid var(--glass-border); box-shadow: var(--shadow);
+  background: var(--paper-strong);
+}
+.projects-hero-frame img {
+  display: block; width: 100%; height: clamp(15rem, 38vw, 25rem); object-fit: cover; object-position: center 38%;
+}
+.projects-hero-cap {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(1.4rem, 3.5vw, 2.6rem);
+  background: linear-gradient(to top, #0f1a30e6 0%, #0f1a30a6 45%, transparent 100%);
+  color: #f3f6fd; display: grid; gap: .5rem;
+}
+.projects-hero-cap .eyebrow { color: #c7d4ff; }
+.projects-hero-cap .eyebrow::before { background: #c7d4ff; }
+.projects-hero-cap h2 {
+  margin: 0; font-family: var(--font-didone); font-weight: 400; letter-spacing: -.02em;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.1;
+}
+.projects-hero-cap p { margin: 0; max-width: 44rem; font-size: clamp(.85rem, 1.4vw, 1rem); line-height: 1.75; color: #dbe4f8; }
+.photo-strip-wrap { padding-top: clamp(1.6rem, 3vw, 2.4rem); }
+.photo-strip-label {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin: 0 0 1.1rem; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.photo-strip {
+  overflow: hidden; border-radius: 1.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+.photo-strip-track {
+  display: flex; gap: 1rem; width: max-content; padding: .3rem;
+  animation: strip-scroll 46s linear infinite;
+}
+.photo-strip:hover .photo-strip-track, .photo-strip:focus-within .photo-strip-track { animation-play-state: paused; }
+@keyframes strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.photo-strip-item {
+  flex: none; width: clamp(9rem, 15vw, 13rem); height: clamp(7rem, 11vw, 9.5rem);
+  border-radius: 1.25rem; overflow: hidden; cursor: zoom-in; padding: 0;
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: transform .3s var(--ease), border-color .25s;
+}
+.photo-strip-item:hover { transform: translateY(-4px); border-color: var(--signal); }
+.photo-strip-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: reduce) {
+  .photo-strip-track { animation: none; }
+  .photo-strip { overflow-x: auto; }
+}
+@media (max-width: 640px) {
+  .projects-hero-frame img { height: clamp(11rem, 44vw, 16rem); }
+}
+
+/* ==========================================================================
+   主页：全板块滚动展示（About / Projects / Awards / Resume / Hobby）
+   ========================================================================== */
+.home-band {
+  position: relative; padding: clamp(4.2rem, 8.5vw, 7.5rem) 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+.home-band--projects, .home-band--resume { background: var(--paper-strong); }
+.home-band--awards, .home-band--hobby {
+  background: linear-gradient(180deg, var(--signal-soft) 0%, transparent 55%), var(--paper);
+}
+.band-head {
+  grid-template-columns: minmax(13rem, .85fr) minmax(18rem, 1.15fr) auto;
+  align-items: end; gap: clamp(1.6rem, 4vw, 4rem); margin-bottom: clamp(2.2rem, 4vw, 3.8rem);
+  display: grid;
+}
+.band-head h2 {
+  letter-spacing: -.055em; margin: .7rem 0 0; font-family: var(--font-didone);
+  font-size: clamp(2.5rem, 5vw, 4.4rem); font-weight: 400; line-height: .98; color: var(--ink);
+}
+.band-head > p { color: var(--ink-soft); margin: 0; line-height: 1.85; }
+.band-head .text-link { justify-self: end; }
+
+/* About 板块：双卡 */
+.band-about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+.band-card {
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  border-radius: 1.6rem; padding: clamp(1.6rem, 3vw, 2.5rem);
+  display: grid; gap: 1rem; align-content: start;
+  transition: transform .3s var(--ease), border-color .25s;
+}
+.band-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--signal) 45%, transparent); }
+.band-card-tag {
+  display: inline-flex; align-items: center; gap: .55rem; justify-self: start;
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--signal); background: var(--signal-soft); border-radius: 999px; padding: .34rem .75rem;
+}
+.band-card h3 {
+  font-family: var(--font-didone); font-weight: 400; letter-spacing: -.025em;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem); line-height: 1.2; margin: 0; color: var(--ink);
+}
+.band-card p { color: var(--ink-soft); font-size: .94rem; line-height: 1.95; margin: 0; }
+.band-card p strong { color: var(--ink); font-weight: 600; }
+
+/* Awards 板块：四卡 */
+.band-awards-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.3rem; }
+.band-awards-grid .award-card { text-align: left; }
+
+/* Resume 板块 */
+.band-resume-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .95fr); gap: clamp(1.6rem, 4vw, 3.5rem); align-items: start; }
+.band-resume-statement {
+  font-family: var(--font-didone); font-weight: 400; letter-spacing: -.02em; color: var(--ink);
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.5; margin: 0 0 1.6rem;
+}
+.band-resume-tags { margin-bottom: 1.8rem; }
+.band-resume-list { display: grid; gap: 1rem; }
+.band-resume-item {
+  border: 1px solid var(--glass-border); background: var(--glass-bg); border-radius: 1.25rem;
+  padding: 1.1rem 1.3rem; display: grid; gap: .3rem;
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  transition: transform .25s var(--ease), border-color .25s;
+}
+.band-resume-item:hover { transform: translateX(4px); border-color: color-mix(in srgb, var(--signal) 45%, transparent); }
+.band-resume-item strong { font-family: var(--font-display); font-size: .98rem; font-weight: 600; color: var(--ink); }
+.band-resume-item span { font-family: var(--font-mono); font-size: .66rem; color: var(--muted); letter-spacing: .05em; }
+
+/* Hobby 板块：照片行 + 标签 */
+.band-hobby-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; margin-bottom: 1.8rem; }
+.band-hobby-photos .sport-card { transform: rotate(var(--tilt, 0deg)); }
+.band-hobby-photos .sport-card:hover { transform: rotate(0deg) translateY(-8px); }
+.band-hobby-actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+.band-hobby-actions .hobby-tags { margin-right: auto; }
+
+/* 右侧板块导航点（scrollspy） */
+.section-dots {
+  position: fixed; right: clamp(.7rem, 1.8vw, 1.5rem); top: 50%; transform: translateY(-50%);
+  z-index: 96; display: grid; gap: .95rem;
+}
+.section-dots a {
+  width: .66rem; height: .66rem; border-radius: 999px; background: var(--line-strong);
+  position: relative; transition: background .25s, transform .25s var(--ease);
+}
+.section-dots a:hover { background: var(--ink-soft); }
+.section-dots a.is-active { background: var(--signal); transform: scale(1.4); }
+.section-dots a span {
+  position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+  white-space: nowrap; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft);
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow); border-radius: 999px; padding: .3rem .68rem;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.section-dots a:hover span, .section-dots a.is-active span { opacity: 1; }
+@media (max-width: 1180px) { .section-dots { display: none; } }
+
+/* 板块响应式 */
+@media (max-width: 960px) {
+  .band-head { grid-template-columns: 1fr; gap: 1.1rem; }
+  .band-head .text-link { justify-self: start; }
+  .band-about-grid, .band-awards-grid, .band-hobby-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .band-resume-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .band-about-grid, .band-awards-grid, .band-hobby-photos { grid-template-columns: 1fr; }
+}
+
+/* Hobby 舞台组（复用拍立得相框，双列） */
+.sport-grid--duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 700px) { .sport-grid--duo { grid-template-columns: 1fr; } }
+.sport-grid--six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 960px) { .sport-grid--six { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .sport-grid--six { grid-template-columns: 1fr; } }

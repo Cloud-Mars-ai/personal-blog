@@ -71,7 +71,7 @@
           <div><dt>Experience</dt><dd data-i18n="home_exp_val">视觉与机器人方向实践</dd></div>
         </dl>
         <div class="editorial-actions">
-          <a href="#selected-work"><span data-i18n="home_view_projects">查看项目</span> <span aria-hidden="true">↓</span></a>
+          <a href="#band-projects"><span data-i18n="home_view_projects">查看项目</span> <span aria-hidden="true">↓</span></a>
           <a href="awards.html"><span data-i18n="home_read_articles">获奖经历</span> <span aria-hidden="true">↗</span></a>
           <a href="resume.html"><span data-i18n="home_view_resume">查看简历</span> <span aria-hidden="true">↗</span></a>
         </div>
@@ -92,11 +92,36 @@
       <li><span class="contact-label" data-i18n="contact_label_github">GitHub</span><a class="contact-value" href="https://github.com/Cloud-Mars-ai" target="_blank" rel="noopener">Cloud-Mars-ai <span aria-hidden="true">↗</span></a></li>
     </ul>
   </section>
-  <section class="editorial-section site-shell" id="selected-work">
-    <header class="editorial-section-head">
-      <div><p class="eyebrow">Selected work</p><h2 data-i18n="home_sec_projects">项目</h2></div>
+  <section class="home-band home-band--about site-shell" id="band-about" aria-labelledby="band-about-title">
+    <header class="band-head">
+      <div>
+        <p class="section-index">01 / About</p>
+        <h2 id="band-about-title" data-i18n="band_about_title">关于我</h2>
+      </div>
+      <p data-i18n="home_bio">北京化工大学在读，机械设计制造及其自动化专业本科生。热爱计算机视觉、机器人与 AI 应用开发，持续构建、持续开源。</p>
+      <a class="text-link" href="about.html"><span data-i18n="band_enter">进入</span> About <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="band-about-grid">
+      <article class="band-card">
+        <span class="band-card-tag">Who am I</span>
+        <h3 data-i18n="band_about_card_who">我是谁</h3>
+        <p data-i18n="band_about_who">孔晨宇，北京化工大学机械设计制造及其自动化专业本科在读。机械训练给了我结构与控制的底子，之后一路自学计算机视觉、嵌入式与 AI 应用，习惯把一个想法从需求一直做到能演示的成品。</p>
+      </article>
+      <article class="band-card">
+        <span class="band-card-tag">Learning philosophy</span>
+        <h3 data-i18n="band_about_card_belief">学习理念</h3>
+        <p data-i18n="band_about_belief">学习发生在动手的现场：先有自己的假设与推理，再让 AI 去检验它。把 AI 当作工具而不是答案，在这个时代是最基本的清醒。</p>
+      </article>
+    </div>
+  </section>
+  <section class="home-band home-band--projects site-shell" id="band-projects" aria-labelledby="band-projects-title">
+    <header class="band-head">
+      <div>
+        <p class="section-index">02 / Projects</p>
+        <h2 id="band-projects-title" data-i18n="band_projects_title">项目</h2>
+      </div>
       <p data-i18n="home_sec_projects_desc">从三维可视化到机器人视觉与 AI 应用，记录系统结构、关键实现和工程边界。</p>
-      <a class="text-link" href="projects.html"><span data-i18n="home_all_projects">全部项目</span></a>
+      <a class="text-link" href="projects.html"><span data-i18n="home_all_projects">全部项目</span> <span aria-hidden="true">↗</span></a>
     </header>
     <div class="editorial-projects"><a class="project-card" href="projects.html"><div>
           <div class="project-meta"><span data-i18n="home_kicker_3d">三维可视化 / WebGL</span><span data-i18n="home_kicker_flagship">旗舰项目</span></div>
@@ -119,6 +144,79 @@
           <div class="metric"><strong>Full-stack</strong> <span data-i18n="home_metric_7domains">权益反馈</span></div>
         </div></a>
 </div>
+  </section>
+  <section class="home-band home-band--awards site-shell" id="band-awards" aria-labelledby="band-awards-title">
+    <header class="band-head">
+      <div>
+        <p class="section-index">03 / Awards</p>
+        <h2 id="band-awards-title" data-i18n="band_awards_title">获奖</h2>
+      </div>
+      <p data-i18n="band_awards_desc">国家奖学金、RAICOM 全国总决赛、挑战杯——竞赛与荣誉，记录着每一次把想法做进现实的过程。</p>
+      <a class="text-link" href="awards.html"><span data-i18n="band_enter">进入</span> Awards <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="band-awards-grid">
+      <button class="award-card" type="button" data-award="assets/awards/award-18-national-scholarship.jpg" data-i18n-aria="award_name_18" aria-label="国家奖学金（中华人民共和国教育部）">
+        <span class="award-thumb"><img src="assets/awards/award-18-national-scholarship.jpg" data-i18n-alt="award_name_18" alt="国家奖学金（中华人民共和国教育部）" loading="lazy"></span>
+        <span class="award-body"><span class="award-level level-national" data-i18n="award_level_national">国家级</span><span class="award-name" data-i18n="award_name_18">国家奖学金（中华人民共和国教育部）</span><span class="award-date">2026</span></span>
+      </button>
+      <button class="award-card" type="button" data-award="assets/awards/award-03-raicom-national.jpg" data-i18n-aria="award_name_03" aria-label="睿抗机器人开发者大赛（RAICOM）全国总决赛 · 视觉系统创新竞赛 三等奖">
+        <span class="award-thumb"><img src="assets/awards/award-03-raicom-national.jpg" data-i18n-alt="award_name_03" alt="睿抗机器人开发者大赛（RAICOM）全国总决赛 · 视觉系统创新竞赛 三等奖" loading="lazy"></span>
+        <span class="award-body"><span class="award-level level-national" data-i18n="award_level_national">国家级</span><span class="award-name" data-i18n="award_name_03">睿抗机器人开发者大赛（RAICOM）全国总决赛 · 视觉系统创新竞赛 三等奖</span><span class="award-date">2026.08</span></span>
+      </button>
+      <button class="award-card" type="button" data-award="assets/awards/award-02-scholarship.jpg" data-i18n-aria="award_name_02" aria-label="人民一等奖学金（2025–2026 学年第一学期）">
+        <span class="award-thumb"><img src="assets/awards/award-02-scholarship.jpg" data-i18n-alt="award_name_02" alt="人民一等奖学金（2025–2026 学年第一学期）" loading="lazy"></span>
+        <span class="award-body"><span class="award-level level-school" data-i18n="award_level_school">校级</span><span class="award-name" data-i18n="award_name_02">人民一等奖学金（2025–2026 学年第一学期）</span><span class="award-date">2026.06</span></span>
+      </button>
+      <button class="award-card" type="button" data-award="assets/awards/award-05-challenge-provincial.jpg" data-i18n-aria="award_name_05" aria-label="“挑战杯”首都大学生创业计划竞赛 乡村振兴专项赛 二等奖">
+        <span class="award-thumb"><img src="assets/awards/award-05-challenge-provincial.jpg" data-i18n-alt="award_name_05" alt="“挑战杯”首都大学生创业计划竞赛 乡村振兴专项赛 二等奖" loading="lazy"></span>
+        <span class="award-body"><span class="award-level level-provincial" data-i18n="award_level_provincial">省级</span><span class="award-name" data-i18n="award_name_05">“挑战杯”首都大学生创业计划竞赛 乡村振兴专项赛 二等奖</span><span class="award-date">2026</span></span>
+      </button>
+    </div>
+  </section>
+  <section class="home-band home-band--resume site-shell" id="band-resume" aria-labelledby="band-resume-title">
+    <header class="band-head">
+      <div>
+        <p class="section-index">04 / Resume</p>
+        <h2 id="band-resume-title" data-i18n="band_resume_title">简历</h2>
+      </div>
+      <p data-i18n="band_resume_desc">机械 · 视觉 · 机器人 · AI。端到端的工程能力：从数据处理到应用服务，从标定到部署，持续构建、持续开源。</p>
+      <a class="text-link" href="resume.html"><span data-i18n="band_enter">进入</span> Resume <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="band-resume-grid">
+      <div>
+        <p class="band-resume-statement" data-i18n="band_resume_statement">把每一个项目，都当作产品来做。</p>
+        <div class="band-resume-tags hobby-tags"><span>Python</span><span>TypeScript</span><span>OpenCV</span><span>Three.js</span><span>LLM</span><span>RAG</span><span>Agent</span><span>FastAPI</span><span>PyTorch</span></div>
+        <div class="band-resume-list">
+          <div class="band-resume-item"><strong data-i18n="resume_side_edu">教育</strong><span data-i18n="resume_side_edu_val">北京化工大学，机械设计制造及其自动化专业本科在读。</span></div>
+          <div class="band-resume-item"><strong data-i18n="resume_side_dir">方向</strong><span data-i18n="resume_side_dir_val">计算机视觉、机器人、三维可视化与 AI 应用开发。</span></div>
+        </div>
+      </div>
+      <article class="band-card">
+        <span class="band-card-tag">Open to work</span>
+        <h3 data-i18n="band_resume_open">在找什么机会</h3>
+        <p data-i18n="faq_a2">视觉、机器人或 AI 应用方向的实习与项目合作，也欢迎工程实践层面的交流。状态是 Open to work，完整经历在 Resume 页，邮件随时联系。</p>
+        <a class="text-link" href="mailto:kongcy6413@gmail.com"><span data-i18n="home_send_email">发送邮件</span> <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </section>
+  <section class="home-band home-band--hobby site-shell" id="band-hobby" aria-labelledby="band-hobby-title">
+    <header class="band-head">
+      <div>
+        <p class="section-index">05 / Hobby</p>
+        <h2 id="band-hobby-title" data-i18n="band_hobby_title">爱好</h2>
+      </div>
+      <p data-i18n="band_hobby_desc">篮球、滑雪、马拉松与舞台话剧——工程之外的另外几面，构成一个完整的人。</p>
+      <a class="text-link" href="hobby.html"><span data-i18n="band_enter">进入</span> Hobby <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="band-hobby-photos">
+      <figure class="sport-card" style="--tilt:-1.6deg"><span class="sport-photo"><img src="assets/img/basketball-team.jpg" data-i18n-alt="sport_name_basketball_team" alt="校队篮球" loading="lazy"></span><figcaption><strong data-i18n="sport_name_basketball_team">校队篮球</strong><span data-i18n="sport_cat_team">团队运动</span></figcaption></figure>
+      <figure class="sport-card" style="--tilt:1.4deg"><span class="sport-photo"><img src="assets/img/ski-night.jpg" data-i18n-alt="sport_name_skiing" alt="滑雪" loading="lazy"></span><figcaption><strong data-i18n="sport_name_skiing">滑雪</strong><span data-i18n="sport_cat_winter">冬季运动</span></figcaption></figure>
+      <figure class="sport-card" style="--tilt:-1.2deg"><span class="sport-photo"><img src="assets/img/marathon-relay.jpg" data-i18n-alt="sport_name_marathon" alt="师生马拉松接力" loading="lazy"></span><figcaption><strong data-i18n="sport_name_marathon">师生马拉松接力</strong><span data-i18n="sport_cat_marathon">长跑 · 接力</span></figcaption></figure>
+      <figure class="sport-card" style="--tilt:1.8deg"><span class="sport-photo"><img src="assets/img/stage-fanxudong.jpg" data-i18n-alt="stage_name_fanxudong" alt="范旭东 · 舞台剧表演" loading="lazy"></span><figcaption><strong data-i18n="stage_name_fanxudong">范旭东 · 舞台剧表演</strong><span data-i18n="stage_cat_drama">话剧表演</span></figcaption></figure>
+    </div>
+    <div class="band-hobby-actions">
+      <div class="hobby-tags"><span data-i18n="hobby_tag_basketball">篮球</span><span data-i18n="sport_name_skiing">滑雪</span><span data-i18n="sport_name_marathon">师生马拉松接力</span><span data-i18n="hobby_group_stage">舞台</span></div>
+    </div>
   </section>
 <section class="tagline-reveal site-shell" aria-label="工作信条">
     <p class="eyebrow" data-i18n="home_belief_kicker">Belief / 工作信条</p>
@@ -157,6 +255,10 @@
     </aside>
   </section>
 </main>
+<div class="award-lightbox" role="dialog" data-i18n-aria="aria_lightbox" aria-label="查看图片">
+  <button class="award-lightbox-close" type="button"><span data-i18n="search_close">Esc 关闭</span></button>
+  <img src="" alt="">
+</div>
 <footer class="site-footer">
   <div class="site-shell footer-inner">
     <div>

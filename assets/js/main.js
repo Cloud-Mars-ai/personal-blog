@@ -145,9 +145,10 @@
   if (lb) {
     var lbImg = lb.querySelector("img");
     var closeLb = function () { lb.classList.remove("is-open"); };
-    document.querySelectorAll("[data-award]").forEach(function (btn) {
+    document.querySelectorAll("[data-award], [data-photo]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        lbImg.src = btn.getAttribute("data-award");
+        lbImg.src = btn.getAttribute("data-award") || btn.getAttribute("data-photo");
+        lbImg.alt = btn.getAttribute("data-i18n-alt") || (btn.querySelector("img") && btn.querySelector("img").alt) || "";
         lb.classList.add("is-open");
       });
     });
@@ -231,7 +232,7 @@
 
   /* ---------- 滚动渐显（ IntersectionObserver ） ---------- */
   var revealTargets = document.querySelectorAll(
-    ".index-hero, .listing-section, .award-group, .project-card, .up-card, .about-layout, .resume-layout, .resume-doc, .hobby-group, .editorial-section, .resume-project, .timeline-entry, .post-card"
+    ".index-hero, .listing-section, .award-group, .project-card, .up-card, .about-layout, .resume-layout, .resume-doc, .hobby-group, .editorial-section, .resume-project, .timeline-entry, .post-card, .home-band, .band-card, .projects-hero, .photo-strip-wrap, .band-resume-item"
   );
   if (revealTargets.length) {
     if (reduced || !("IntersectionObserver" in window)) {
@@ -680,6 +681,166 @@
     avVideo.addEventListener("seeked", function () { avMark(avVideo.currentTime); });
     avMark(0);
   }
+
+  /* ==========================================================================
+     第31轮 · 背景音乐（卡农 Canon in D · Lee Galloway 钢琴版，CC BY-SA 3.0）
+     全站注入：音量 0.35 循环播放；浏览器自动播放策略拦截时，首次交互即启动；
+     播放/暂停状态存 localStorage（vc-music），跨页面保持一致。
+     ========================================================================== */
+  (function bgm() {
+    if (document.body.classList.contains("entry-body")) {
+      /* 片头页也放开关，但不自动播放（进入主页时由首次点击手势自然接上） */
+    }
+    var KEY = "vc-music";
+    var SRC = "assets/audio/canon-in-d.mp3";
+    var VOL = 0.35;
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    var wantOn = saved !== "off";
+
+    var audio = document.createElement("audio");
+    audio.src = SRC;
+    audio.loop = true;
+    audio.preload = "auto";
+    audio.volume = VOL;
+    document.body.appendChild(audio);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "music-toggle";
+    btn.setAttribute("data-music-toggle", "");
+    btn.innerHTML =
+      '<svg class="music-eq" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<rect class="eq-bar" x="4" y="6" width="3.6" height="12" rx="1.4"></rect>' +
+      '<rect class="eq-bar" x="10.2" y="6" width="3.6" height="12" rx="1.4"></rect>' +
+      '<rect class="eq-bar" x="16.4" y="6" width="3.6" height="12" rx="1.4"></rect></svg>' +
+      '<svg class="music-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M9 18V6.5l10-2V16"></path><circle cx="6.5" cy="18" r="2.6"></circle><circle cx="16.5" cy="16" r="2.6"></circle></svg>';
+    document.body.appendChild(btn);
+
+    var i18nKey = function (k) {
+      var lang = root.lang === "en" ? "en" : "zh";
+      var d = (window.I18N && window.I18N[lang]) || {};
+      return d[k];
+    };
+    var syncLabel = function () {
+      var playing = !audio.paused && !audio.ended;
+      btn.classList.toggle("is-playing", playing);
+      var tip = i18nKey(playing ? "music_tip_on" : "music_tip_off");
+      if (tip) { btn.title = tip; btn.setAttribute("aria-label", tip); }
+    };
+    var persist = function (on) { try { localStorage.setItem(KEY, on ? "on" : "off"); } catch (e) {} };
+
+    var tryPlay = function () {
+      var p = audio.play();
+      if (p && typeof p.then === "function") {
+        p.then(function () { syncLabel(); })["catch"](function () { /* 等待首次交互 */ });
+      } else { syncLabel(); }
+    };
+    var kick = function () {
+      if (!wantOn) return;
+      tryPlay();
+    };
+
+    btn.addEventListener("click", function () {
+      if (audio.paused) { wantOn = true; persist(true); tryPlay(); }
+      else { wantOn = false; persist(false); audio.pause(); syncLabel(); }
+    });
+    audio.addEventListener("play", syncLabel);
+    audio.addEventListener("pause", syncLabel);
+    /* 加载失败（文件缺失/解码错误）时隐藏开关，不留死按钮 */
+    audio.addEventListener("error", function () { btn.classList.remove("is-ready"); });
+
+    /* 语言切换后刷新提示文案 */
+    document.addEventListener("i18napplied", syncLabel);
+
+    if (wantOn) {
+      audio.addEventListener("loadeddata", function () { btn.classList.add("is-ready"); kick(); });
+      kick();
+      /* 自动播放被拦：首次触摸/点击/按键即启动（一次性） */
+      var onFirst = function () {
+        if (wantOn && audio.paused) tryPlay();
+        window.removeEventListener("pointerdown", onFirst);
+        window.removeEventListener("touchstart", onFirst);
+        window.removeEventListener("keydown", onFirst);
+      };
+      window.addEventListener("pointerdown", onFirst, { passive: true });
+      window.addEventListener("touchstart", onFirst, { passive: true });
+      window.addEventListener("keydown", onFirst);
+    } else {
+      btn.classList.add("is-ready");
+    }
+    syncLabel();
+  })();
+
+  /* ==========================================================================
+     主页全板块滚动：右侧圆点导航（scrollspy，按视口中心就近高亮）
+     ========================================================================== */
+  (function sectionDots() {
+    var bands = Array.prototype.slice.call(document.querySelectorAll(".home-band[id]"));
+    if (!bands.length || reduced) return;
+    var nav = document.createElement("nav");
+    nav.className = "section-dots";
+    nav.setAttribute("aria-label", "板块导航");
+    var labels = [
+      { id: "band-about", label: i18nKeyOf("band_about_title") || "About" },
+      { id: "band-projects", label: i18nKeyOf("band_projects_title") || "Projects" },
+      { id: "band-awards", label: i18nKeyOf("band_awards_title") || "Awards" },
+      { id: "band-resume", label: i18nKeyOf("band_resume_title") || "Resume" },
+      { id: "band-hobby", label: i18nKeyOf("band_hobby_title") || "Hobby" }
+    ];
+    function i18nKeyOf(k) {
+      var lang = root.lang === "en" ? "en" : "zh";
+      var d = (window.I18N && window.I18N[lang]) || {};
+      return d[k];
+    }
+    labels.forEach(function (item) {
+      var a = document.createElement("a");
+      a.href = "#" + item.id;
+      a.setAttribute("data-dot", item.id);
+      a.innerHTML = "<span>" + item.label + "</span>";
+      nav.appendChild(a);
+    });
+    document.body.appendChild(nav);
+
+    var links = {};
+    nav.querySelectorAll("a").forEach(function (a) { links[a.getAttribute("data-dot")] = a; });
+    var current = null;
+    var update = function () {
+      var mid = window.innerHeight / 2, best = null, bestDist = Infinity;
+      bands.forEach(function (b) {
+        var r = b.getBoundingClientRect();
+        if (r.bottom < -80 || r.top > window.innerHeight + 80) return;
+        var d = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (d < bestDist) { bestDist = d; best = b.id; }
+      });
+      if (best !== current) {
+        current = best;
+        Object.keys(links).forEach(function (id) {
+          links[id].classList.toggle("is-active", id === best);
+        });
+      }
+    };
+    var raf = false;
+    window.addEventListener("scroll", function () {
+      if (raf) return;
+      raf = true;
+      requestAnimationFrame(function () { update(); raf = false; });
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    document.addEventListener("i18napplied", function () {
+      labels.forEach(function (item) {
+        var a = links[item.id];
+        if (a) a.innerHTML = "<span>" + (i18nKeyOf(
+          item.id === "band-about" ? "band_about_title" :
+          item.id === "band-projects" ? "band_projects_title" :
+          item.id === "band-awards" ? "band_awards_title" :
+          item.id === "band-resume" ? "band_resume_title" : "band_hobby_title"
+        ) || item.label) + "</span>";
+      });
+    });
+    update();
+  })();
 
   /* ---------- 返回顶部 / 年份 ---------- */
   document.querySelectorAll("[data-backtop]").forEach(function (btn) {
