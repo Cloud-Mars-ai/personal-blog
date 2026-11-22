@@ -1889,20 +1889,17 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
   background: var(--paper-strong);
 }
 .projects-hero-frame img {
-  display: block; width: 100%; height: clamp(16rem, 40vw, 26rem); object-fit: cover; object-position: center 32%;
+  display: block; width: 100%; height: auto;
 }
 .projects-hero-cap {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(1.4rem, 3.5vw, 2.6rem);
-  background: linear-gradient(to top, #0f1a30e6 0%, #0f1a30a6 45%, transparent 100%);
-  color: #f3f6fd; display: grid; gap: .5rem;
+  display: grid; gap: .55rem;
+  padding: clamp(1.2rem, 2.6vw, 1.7rem) clamp(1.2rem, 3vw, 2.2rem) clamp(1.3rem, 2.8vw, 1.9rem);
 }
-.projects-hero-cap .eyebrow { color: #c7d4ff; }
-.projects-hero-cap .eyebrow::before { background: #c7d4ff; }
 .projects-hero-cap h2 {
   margin: 0; font-family: var(--font-didone); font-weight: 400; letter-spacing: -.02em;
-  font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.1;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.1; color: var(--ink);
 }
-.projects-hero-cap p { margin: 0; max-width: 44rem; font-size: clamp(.85rem, 1.4vw, 1rem); line-height: 1.75; color: #dbe4f8; }
+.projects-hero-cap p { margin: 0; max-width: 44rem; font-size: clamp(.85rem, 1.4vw, 1rem); line-height: 1.75; color: var(--ink-soft); }
 .photo-strip-wrap { padding-top: clamp(1.6rem, 3vw, 2.4rem); }
 .photo-strip-label {
   display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
@@ -1933,9 +1930,6 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
 @media (prefers-reduced-motion: reduce) {
   .photo-strip-track { animation: none; }
   .photo-strip { overflow-x: auto; }
-}
-@media (max-width: 640px) {
-  .projects-hero-frame img { height: clamp(11rem, 44vw, 16rem); }
 }
 
 /* ==========================================================================
