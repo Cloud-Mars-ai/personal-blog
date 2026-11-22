@@ -1972,7 +1972,7 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
   background: var(--paper-strong);
 }
 .projects-hero-frame img {
-  display: block; width: 100%; height: clamp(15rem, 38vw, 25rem); object-fit: cover; object-position: center 38%;
+  display: block; width: 100%; height: clamp(16rem, 40vw, 26rem); object-fit: cover; object-position: center 32%;
 }
 .projects-hero-cap {
   position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(1.4rem, 3.5vw, 2.6rem);
@@ -2137,3 +2137,88 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
 .sport-grid--six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 960px) { .sport-grid--six { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .sport-grid--six { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   About 学习理念关键词气泡（2026-11-22）
+   ========================================================================== */
+.belief-bubbles {
+  display: flex; flex-wrap: wrap; gap: 1rem 1.15rem; align-items: center;
+  margin: 2.4rem 0 .6rem;
+}
+.belief-bubble {
+  font-family: var(--font-display); font-size: .95rem; font-weight: 500;
+  letter-spacing: .01em; color: var(--ink);
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
+  border-radius: 999px; padding: .55rem 1.3rem;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .32s var(--ease), border-color .25s, box-shadow .25s;
+}
+.belief-bubble:hover {
+  transform: rotate(0deg) translateY(-3px) scale(1.03);
+  border-color: color-mix(in srgb, var(--signal) 45%, transparent);
+}
+.belief-bubble--lead {
+  font-size: 1.12rem; font-weight: 600; padding: .68rem 1.55rem;
+  color: var(--signal); background: var(--signal-soft);
+}
+@media (max-width: 560px) { .belief-bubbles { gap: .8rem; } .belief-bubble { font-size: .88rem; } }
+
+/* ==========================================================================
+   主页滚动过渡：浪带系统 + 深潮信条带（2026-11-22）
+   隐喻：deepsea 的"海"——滚动即下潜。下一板块的浪头探入上一板块，
+   替代 border 硬线；工作信条为全序列唯一深色带（视觉高潮/深呼吸节点）。
+   ========================================================================== */
+
+/* ---- 过渡 token（三主题） ---- */
+:root {
+  --band-tint: color-mix(in srgb, var(--signal) 6%, var(--paper));
+  --band-tint-soft: color-mix(in srgb, var(--signal) 3%, var(--paper));
+  --deep-band-solid: #221a12;
+  --deep-band: linear-gradient(155deg, #3a2c1e 0%, #221a12 62%, #1a140d 100%);
+  --deep-band-ink: #f7f1e5;
+  --deep-band-soft: #ddcdb6;
+}
+[data-theme="dark"] {
+  --deep-band-solid: #2a150e;
+  --deep-band: linear-gradient(155deg, #43220f 0%, #2a150e 62%, #1c0e08 100%);
+  --deep-band-ink: #f8ecdf;
+  --deep-band-soft: #e0b599;
+}
+[data-theme="deepsea"] {
+  --deep-band-solid: #0d1830;
+  --deep-band: linear-gradient(155deg, #16264f 0%, #0d1830 62%, #0a1224 100%);
+  --deep-band-ink: #eaf0fd;
+  --deep-band-soft: #b9c8e8;
+}
+
+/* ---- 浪带组件 ---- */
+.band-wave {
+  position: absolute; left: 0; right: 0; bottom: -1px; z-index: 1;
+  height: clamp(2.2rem, 4.5vw, 4rem); pointer-events: none;
+}
+.band-wave svg { display: block; width: 100%; height: 100%; }
+.band-wave path { fill: var(--wave-fill, var(--paper)); }
+.band-wave--top { bottom: auto; top: calc(-1 * clamp(2.2rem, 4.5vw, 4rem)); }
+@media (max-width: 560px) { .band-wave, .band-wave--top { height: 1.9rem; } .band-wave--top { top: -1.9rem; } }
+
+/* ---- 去除板块间硬 border，过渡交给浪带 ---- */
+.home-band, .contact-band, .tagline-reveal, .faq-section { border-bottom: 0; }
+
+/* ---- 深潮带：工作信条 ---- */
+.tagline-reveal {
+  position: relative; overflow: hidden;
+  background: var(--deep-band); color: var(--deep-band-ink);
+  padding: clamp(6.5rem, 13vw, 11rem) 0;
+}
+.tagline-reveal .eyebrow { color: var(--deep-band-soft); }
+.tagline-reveal .eyebrow::before { background: var(--deep-band-soft); }
+.tagline-reveal .tagline-text { color: var(--deep-band-ink); }
+.tagline-reveal .tw { opacity: .3; }
+
+/* ---- 收尾区：暖渐变 + 底部海岸线 ---- */
+body.page-home .editorial-closing {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, transparent 0%, var(--signal-soft) 46%), var(--paper);
+}

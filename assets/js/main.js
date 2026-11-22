@@ -781,7 +781,7 @@
     if (!bands.length || reduced) return;
     var nav = document.createElement("nav");
     nav.className = "section-dots";
-    nav.setAttribute("aria-label", "板块导航");
+    nav.setAttribute("aria-label", i18nKeyOf("aria_section_dots") || "Section navigation");
     var labels = [
       { id: "band-about", label: i18nKeyOf("band_about_title") || "About" },
       { id: "band-projects", label: i18nKeyOf("band_projects_title") || "Projects" },
@@ -829,6 +829,7 @@
     }, { passive: true });
     window.addEventListener("resize", update);
     document.addEventListener("i18napplied", function () {
+      nav.setAttribute("aria-label", i18nKeyOf("aria_section_dots") || "Section navigation");
       labels.forEach(function (item) {
         var a = links[item.id];
         if (a) a.innerHTML = "<span>" + (i18nKeyOf(
