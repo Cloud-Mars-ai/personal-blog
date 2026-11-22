@@ -582,7 +582,14 @@ body:has(.mobile-menu[open]) .scroll-badge { opacity: 0; }
 /* ==========================================================================
    About
    ========================================================================== */
-.about-layout { grid-template-columns: minmax(18rem, .72fr) minmax(0, 1.28fr); align-items: start; gap: clamp(3rem, 8vw, 7rem); display: grid; padding: 5rem 0 7rem; }
+.about-layout {
+  grid-template-columns: minmax(18rem, .72fr) minmax(0, 1.28fr);
+  grid-template-areas: "statement prose" "bubbles prose";
+  gap: clamp(2rem, 3.5vw, 3rem) clamp(3rem, 8vw, 7rem);
+  align-items: start; display: grid; padding: 5rem 0 7rem;
+}
+.about-statement { grid-area: statement; }
+.about-prose { grid-area: prose; }
 .about-statement { position: relative; top: 0; padding: 2.25rem 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
 .about-monogram {
   color: var(--signal); font-family: var(--font-didone); letter-spacing: -.12em; margin-bottom: 2.8rem;
@@ -861,6 +868,7 @@ a.contact-value:hover { color: var(--signal); border-bottom-color: var(--signal)
   .editorial-projects .project-card { border-right: 0; border-bottom: 1px solid var(--line-strong); }
   .editorial-projects .project-card:last-child { border-bottom: 0; }
   .about-layout, .resume-layout { grid-template-columns: 1fr; }
+  .about-layout { grid-template-areas: "statement" "prose" "bubbles"; }
   .resume-layout aside { position: static; }
   .cover-nav { display: none; }
 }
@@ -2048,31 +2056,38 @@ body.page-home .footer-links { font-family: var(--font-display-sans); font-weigh
 @media (max-width: 700px) { .sport-grid--six { grid-template-columns: 1fr; } }
 
 /* ==========================================================================
-   About 学习理念关键词气泡（2026-11-22）
+   About 学习理念关键词气泡（2026-11-22 第38轮：移到左列空白处，改圆圈形）
+   布局：左列 = CK 声明块 + 关键词圆圈簇（填补声明块下方的空白）
    ========================================================================== */
 .belief-bubbles {
-  display: flex; flex-wrap: wrap; gap: 1rem 1.15rem; align-items: center;
-  margin: 2.4rem 0 .6rem;
+  grid-area: bubbles; align-self: center;
+  display: grid; grid-template-columns: auto auto auto; justify-content: center;
+  gap: clamp(.8rem, 1.4vw, 1.2rem);
 }
 .belief-bubble {
-  font-family: var(--font-display); font-size: .95rem; font-weight: 500;
+  font-family: var(--font-display); font-size: .82rem; font-weight: 500;
   letter-spacing: .01em; color: var(--ink);
+  text-align: center; line-height: 1.45;
+  width: clamp(5.25rem, 6.75vw, 7rem); aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; padding: .85rem;
   border: 1px solid var(--glass-border); background: var(--glass-bg);
   backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow), inset 0 1px var(--glass-hl);
-  border-radius: 999px; padding: .55rem 1.3rem;
   transform: rotate(var(--tilt, 0deg));
   transition: transform .32s var(--ease), border-color .25s, box-shadow .25s;
 }
 .belief-bubble:hover {
-  transform: rotate(0deg) translateY(-3px) scale(1.03);
+  transform: rotate(0deg) translateY(-3px) scale(1.04);
   border-color: color-mix(in srgb, var(--signal) 45%, transparent);
 }
 .belief-bubble--lead {
-  font-size: 1.12rem; font-weight: 600; padding: .68rem 1.55rem;
+  grid-row: 1 / span 2; grid-column: 1;
+  align-self: center; justify-self: center;
+  width: clamp(7rem, 8.25vw, 8.5rem);
+  font-size: 1.02rem; font-weight: 600;
   color: var(--signal); background: var(--signal-soft);
 }
-@media (max-width: 560px) { .belief-bubbles { gap: .8rem; } .belief-bubble { font-size: .88rem; } }
+@media (max-width: 560px) { .belief-bubbles { gap: .8rem; } .belief-bubble { font-size: .74rem; padding: .7rem; } }
 
 /* ==========================================================================
    主页滚动过渡：浪带系统 + 深潮信条带（2026-11-22）
